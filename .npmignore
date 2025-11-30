@@ -1,0 +1,5 @@
+# Ignore TypeScript build output
+*.tsbuildinfo
+
+# Ignore node_modules
+node_modules/
