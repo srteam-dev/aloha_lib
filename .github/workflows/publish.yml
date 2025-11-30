@@ -1,11 +1,14 @@
 name: Publish Package
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'package.json'
   release:
     types: [created]
-  push:
-    tags:
-      - 'v*'
+  workflow_dispatch:
 
 jobs:
   publish:
@@ -29,8 +32,30 @@ jobs:
         
       - name: Build
         run: npm run build
+      
+      - name: Check if version changed
+        id: check
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if git ls-remote --tags origin | grep -q "refs/tags/v$VERSION"; then
+            echo "Version $VERSION already published"
+            echo "should_publish=false" >> $GITHUB_OUTPUT
+          else
+            echo "New version $VERSION detected"
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
+          fi
         
       - name: Publish to GitHub Packages
+        if: steps.check.outputs.should_publish == 'true'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Create Git Tag
+        if: steps.check.outputs.should_publish == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "v${{ steps.check.outputs.version }}" -m "Release v${{ steps.check.outputs.version }}"
+          git push origin "v${{ steps.check.outputs.version }}"
