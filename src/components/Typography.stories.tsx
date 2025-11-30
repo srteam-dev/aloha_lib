@@ -51,7 +51,7 @@ export const LeadExample: StoryObj = {
     <div className="space-y-4 max-w-2xl">
       <H2>Article Title</H2>
       <Lead>
-        This is a lead paragraph that introduces the content. It's slightly larger 
+        This is a lead paragraph that introduces the content. It&apos;s slightly larger 
         and muted to draw attention without overwhelming the reader.
       </Lead>
       <P>
@@ -100,11 +100,11 @@ export const FullExample: StoryObj = {
       <H3>Installation</H3>
       <P>
         Run the following command in your project directory to install the library.
-        You'll have access to all components immediately after installation.
+        You&apos;ll have access to all components immediately after installation.
       </P>
       
       <H4>Quick Example</H4>
-      <Muted>Here's a simple example to get you started</Muted>
+      <Muted>Here&apos;s a simple example to get you started</Muted>
       
       <Small>Last updated: November 30, 2025</Small>
     </div>
