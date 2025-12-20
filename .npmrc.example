@@ -1,0 +1,5 @@
+# Configuración para instalar paquetes desde GitHub Packages
+# Copia este archivo como .npmrc y reemplaza YOUR_GITHUB_TOKEN con tu token personal
+
+@srteam-dev:registry=https://npm.pkg.github.com/
+//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
