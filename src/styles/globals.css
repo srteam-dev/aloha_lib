@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;700&family=Nunito+Sans:wght@300;500;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -19,6 +21,29 @@
   --radius: 0.5rem;
   --background: 0 0% 100%;
   --foreground: 222 47% 11%;
+
+  /* Paleta de colores Aloha */
+  --colors-olivo: #383517;
+  --colors-lima: #B4DE6E;
+  --colors-bosque: #648C2C;
+  --colors-hueso: #F5F5DC;
+  --colors-piedra: #4A443F;
+  --colors-corteza: #6B5B3E;
+  --colors-girasol: #FFD400;
+  --colors-coral: #FF6F61;
+  --colors-aqua: #66FFCC;
+  --colors-lavanda: #B388D3;
+  --colors-electrico: #0084FF;
+
+  /* Tema claro */
+  --theme-background: var(--colors-hueso);
+  --theme-text: var(--colors-olivo);
+  --theme-highlight: var(--colors-corteza);
+  --theme-primary: var(--colors-lima);
+
+  /* Fuentes */
+  --font-jetbrains: 'JetBrains Mono', monospace;
+  --font-nunito: 'Nunito Sans', sans-serif;
 }
 
 .dark {
@@ -37,6 +62,12 @@
   --ring: 210 100% 50%;
   --background: 222 47% 11%;
   --foreground: 210 40% 98%;
+
+  /* Tema oscuro */
+  --theme-background: var(--colors-piedra);
+  --theme-text: var(--colors-hueso);
+  --theme-highlight: var(--colors-corteza);
+  --theme-primary: var(--colors-bosque);
 }
 
 * {

@@ -49,6 +49,16 @@ module.exports = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      fontFamily: {
+        jetbrains: ['JetBrains Mono', 'monospace'],
+        nunito: ['Nunito Sans', 'sans-serif'],
+      },
+      fontWeight: {
+        light: '300',
+        medium: '500',
+        bold: '700',
+        black: '900',
+      },
     },
   },
   plugins: [],
