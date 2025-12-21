@@ -1,14 +1,25 @@
-name: Publish Package
+# This workflow is DISABLED - Manual publish only via npm publish
+# To enable automatic publishing, rename to publish.yml.disabled
+
+name: Publish Package (DISABLED)
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'package.json'
-  release:
-    types: [created]
   workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Why are you running this?'
+        required: true
+        default: 'Manual publish trigger'
+
+# Automatic triggers disabled:
+# on:
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - 'package.json'
+#   release:
+#     types: [created]
 
 jobs:
   publish:

@@ -1,6 +1,6 @@
 {
-  "name": "@srteam-dev/aloha-ui",
-  "version": "0.1.4",
+  "name": "aloha-ui-library",
+  "version": "0.1.5",
   "description": "A comprehensive React design system with UI components for social applications",
   "homepage": "https://github.com/srteam-dev/aloha_lib#readme",
   "repository": {
@@ -11,7 +11,6 @@
     "url": "https://github.com/srteam-dev/aloha_lib/issues"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/",
     "access": "public"
   },
   "main": "dist/index.js",

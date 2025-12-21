@@ -51,6 +51,6 @@ module.exports = [
         minimize: true,
       }),
     ],
-    external: ['react', 'react-dom', 'lucide-react', 'react-router-dom'],
+    external: ['react', 'react-dom', 'react/jsx-runtime', 'lucide-react', 'react-router-dom'],
   },
 ];
