@@ -8,6 +8,8 @@ export { Checkbox, type CheckboxProps } from './components/Checkbox';
 export { Switch, type SwitchProps } from './components/Switch';
 export { SearchInput, type SearchInputProps } from './components/SearchInput';
 export { Notification, type NotificationProps } from './components/Notification';
+export { TextDivider, type TextDividerProps } from './components/TextDivider';
+export { Link, type LinkProps } from './components/Link';
 export { Image, type ImageProps } from './components/Image';
 export { Popup, type PopupProps } from './components/Popup';
 export { Error, type ErrorProps } from './components/Error';

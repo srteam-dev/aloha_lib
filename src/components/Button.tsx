@@ -1,6 +1,7 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
+import { colors, type ColorName } from '../colors';
 
 const buttonVariants = cva(
   'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
@@ -38,15 +39,36 @@ export interface ButtonProps
   disabled?: boolean;
   /** Loading state */
   loading?: boolean;
+  /** Color from Aloha palette */
+  color?: ColorName;
+  /** Text color from Aloha palette */
+  textColor?: ColorName;
+  /** Icon or image element to show on the left */
+  icon?: React.ReactNode;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, loading, disabled, children, ...props }, ref) => {
+  ({ className, variant, size, loading, disabled, color, textColor, icon, children, style, ...props }, ref) => {
+    const customStyle: React.CSSProperties = {};
+    
+    if (color) {
+      customStyle.backgroundColor = colors[color];
+    }
+    
+    if (textColor) {
+      customStyle.color = colors[textColor];
+    } else if (color && !textColor) {
+      customStyle.color = '#fff';
+    }
+
+    const finalStyle = { ...customStyle, ...style };
+
     return (
       <button
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         disabled={disabled || loading}
+        style={finalStyle}
         {...props}
       >
         {loading ? (
@@ -55,7 +77,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             {children}
           </>
         ) : (
-          children
+          <>
+            {icon && <span className="mr-2 inline-flex items-center">{icon}</span>}
+            {children}
+          </>
         )}
       </button>
     );

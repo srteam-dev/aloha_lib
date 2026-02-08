@@ -15,13 +15,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: 'Enable notifications',
+    label: 'Cada vez que entra un mensaje.',
   },
 };
 
 export const Checked: Story = {
   args: {
-    label: 'Dark mode',
+    label: 'Cada vez que entra un mensaje.',
     defaultChecked: true,
   },
 };

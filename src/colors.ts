@@ -28,6 +28,9 @@ export const colors = {
   aqua: '#66FFCC',
   lavanda: '#B388D3',
   electrico: '#0084FF',
+  marmol: '#D8D8C1',
+  ice: '#FEFEFC',
+  koala: '#A69C8A',
 } as const;
 
 /**
@@ -53,6 +56,9 @@ export const cssVars = {
   aqua: 'var(--colors-aqua)',
   lavanda: 'var(--colors-lavanda)',
   electrico: 'var(--colors-electrico)',
+  marmol: 'var(--colors-marmol)',
+  ice: 'var(--colors-ice)',
+  koala: 'var(--colors-koala)',
 } as const;
 
 export type ColorName = keyof typeof colors;
