@@ -165,8 +165,11 @@ export interface CardDescriptionProps extends React.HTMLAttributes<HTMLParagraph
 }
 
 const CardDescription = React.forwardRef<HTMLParagraphElement, CardDescriptionProps>(
-  ({ className, font, weight, descriptionColor, small = false, children, ...props }, ref) => {
+  ({ className, font, weight, descriptionColor, small = false, children, ...restProps }, ref) => {
     const Component = small ? Small : P;
+
+    // Filtrar 'color' de restProps para evitar conflictos
+    const { color: _, ...props } = restProps as any;
 
     return (
       <Component
