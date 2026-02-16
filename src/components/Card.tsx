@@ -152,7 +152,7 @@ const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
       }
     };
 
-    return <div ref={ref as any}>{renderTitle()}</div>;
+    return <div ref={ref as React.Ref<HTMLDivElement>}>{renderTitle()}</div>;
   }
 );
 CardTitle.displayName = 'CardTitle';
@@ -170,7 +170,7 @@ const CardDescription = React.forwardRef<HTMLParagraphElement, CardDescriptionPr
 
     return (
       <Component
-        ref={ref as any}
+        ref={ref as React.Ref<HTMLParagraphElement>}
         font={font}
         weight={weight}
         color={descriptionColor}

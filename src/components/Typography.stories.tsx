@@ -37,7 +37,7 @@ const meta = {
 export default meta;
 
 // Playground interactivo principal
-export const Playground: StoryObj<{ font: FontFamily; weight?: any; color?: ColorOption; text: string }> = {
+export const Playground: StoryObj<{ font: FontFamily; weight?: 'light' | 'medium' | 'bold' | 'black'; color?: ColorOption; text: string }> = {
   args: {
     font: 'nunito',
     weight: 'medium',
@@ -297,7 +297,7 @@ export const AllComponents: StoryObj = {
 };
 
 // Story específica para cada componente individual
-export const H1Example: StoryObj<{ font: FontFamily; weight?: any; color?: ColorOption }> = {
+export const H1Example: StoryObj<{ font: FontFamily; weight?: 'light' | 'medium' | 'bold' | 'black'; color?: ColorOption }> = {
   args: {
     font: 'nunito',
     color: 'default',
@@ -305,7 +305,7 @@ export const H1Example: StoryObj<{ font: FontFamily; weight?: any; color?: Color
   render: (args) => <H1 {...args}>This is a Heading 1</H1>,
 };
 
-export const H2Example: StoryObj<{ font: FontFamily; weight?: any; color?: ColorOption }> = {
+export const H2Example: StoryObj<{ font: FontFamily; weight?: 'light' | 'medium' | 'bold' | 'black'; color?: ColorOption }> = {
   args: {
     font: 'nunito',
     color: 'default',
@@ -313,7 +313,7 @@ export const H2Example: StoryObj<{ font: FontFamily; weight?: any; color?: Color
   render: (args) => <H2 {...args}>This is a Heading 2</H2>,
 };
 
-export const H3Example: StoryObj<{ font: FontFamily; weight?: any; color?: ColorOption }> = {
+export const H3Example: StoryObj<{ font: FontFamily; weight?: 'light' | 'medium' | 'bold' | 'black'; color?: ColorOption }> = {
   args: {
     font: 'nunito',
     color: 'default',
@@ -321,7 +321,7 @@ export const H3Example: StoryObj<{ font: FontFamily; weight?: any; color?: Color
   render: (args) => <H3 {...args}>This is a Heading 3</H3>,
 };
 
-export const H4Example: StoryObj<{ font: FontFamily; weight?: any; color?: ColorOption }> = {
+export const H4Example: StoryObj<{ font: FontFamily; weight?: 'light' | 'medium' | 'bold' | 'black'; color?: ColorOption }> = {
   args: {
     font: 'nunito',
     color: 'default',
@@ -329,7 +329,7 @@ export const H4Example: StoryObj<{ font: FontFamily; weight?: any; color?: Color
   render: (args) => <H4 {...args}>This is a Heading 4</H4>,
 };
 
-export const ParagraphExample: StoryObj<{ font: FontFamily; weight?: any; color?: ColorOption }> = {
+export const ParagraphExample: StoryObj<{ font: FontFamily; weight?: 'light' | 'medium' | 'bold' | 'black'; color?: ColorOption }> = {
   args: {
     font: 'nunito',
     color: 'default',
