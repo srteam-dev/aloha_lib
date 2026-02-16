@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { H1, H2, H3, H4, P, Subtitle, Lead, Small, Muted } from './Typography';
+import { H1, H2, H3, H4, P, Subtitle, Lead, Small, Muted, FontFamily, ColorOption } from './Typography';
 
 const meta = {
   title: 'Components/Typography',
@@ -7,100 +7,287 @@ const meta = {
     layout: 'padded',
   },
   tags: ['autodocs'],
+  argTypes: {
+    font: {
+      control: 'select',
+      options: ['nunito', 'jetbrains', 'default'],
+      description: 'Familia de fuente',
+      table: {
+        defaultValue: { summary: 'nunito' },
+      },
+    },
+    weight: {
+      control: 'select',
+      options: ['light', 'medium', 'bold', 'black'],
+      description: 'Peso de la fuente',
+    },
+    color: {
+      control: 'select',
+      options: [
+        'default',
+        'olivo', 'lima', 'bosque', 'hueso', 'piedra', 'corteza',
+        'girasol', 'coral', 'aqua', 'lavanda', 'electrico',
+        'theme-background', 'theme-text', 'theme-highlight', 'theme-primary'
+      ],
+      description: 'Color del texto',
+    },
+  },
 } satisfies Meta;
 
 export default meta;
 
-export const Headings: StoryObj = {
-  render: () => (
-    <div className="space-y-6">
-      <H1>Heading 1 - The quick brown fox jumps</H1>
-      <H2>Heading 2 - The quick brown fox jumps</H2>
-      <H3>Heading 3 - The quick brown fox jumps</H3>
-      <H4>Heading 4 - The quick brown fox jumps</H4>
+// Playground interactivo principal
+export const Playground: StoryObj<{ font: FontFamily; weight?: any; color?: ColorOption; text: string }> = {
+  args: {
+    font: 'nunito',
+    weight: 'medium',
+    color: 'default',
+    text: 'The quick brown fox jumps over the lazy dog',
+  },
+  argTypes: {
+    text: {
+      control: 'text',
+      description: 'Texto a mostrar',
+    },
+  },
+  render: ({ font, weight, color, text }) => (
+    <div className="space-y-8">
+      <div>
+        <p className="text-xs text-gray-500 mb-2">H1</p>
+        <H1 font={font} weight={weight} color={color}>{text}</H1>
+      </div>
+      <div>
+        <p className="text-xs text-gray-500 mb-2">H2</p>
+        <H2 font={font} weight={weight} color={color}>{text}</H2>
+      </div>
+      <div>
+        <p className="text-xs text-gray-500 mb-2">H3</p>
+        <H3 font={font} weight={weight} color={color}>{text}</H3>
+      </div>
+      <div>
+        <p className="text-xs text-gray-500 mb-2">H4</p>
+        <H4 font={font} weight={weight} color={color}>{text}</H4>
+      </div>
+      <div>
+        <p className="text-xs text-gray-500 mb-2">Paragraph</p>
+        <P font={font} weight={weight} color={color}>{text}</P>
+      </div>
+      <div>
+        <p className="text-xs text-gray-500 mb-2">Small</p>
+        <Small font={font} weight={weight} color={color}>{text}</Small>
+      </div>
     </div>
   ),
 };
 
-export const Paragraphs: StoryObj = {
+// Comparación de fuentes
+export const FontComparison: StoryObj = {
   render: () => (
-    <div className="space-y-4 max-w-2xl">
-      <P>
-        This is a regular paragraph. The quick brown fox jumps over the lazy dog. 
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </P>
-      <P>
-        This is another paragraph with some more text. It demonstrates how paragraphs 
-        look when they follow each other with proper spacing.
-      </P>
+    <div className="space-y-12">
+      <div>
+        <h3 className="text-lg font-bold mb-6 border-b pb-2">Nunito Sans (Por defecto)</h3>
+        <div className="space-y-4">
+          <H1>Heading 1 - Nunito Sans</H1>
+          <H2>Heading 2 - Nunito Sans</H2>
+          <H3>Heading 3 - Nunito Sans</H3>
+          <P>Paragraph with Nunito Sans. The quick brown fox jumps over the lazy dog. 0123456789</P>
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-bold mb-6 border-b pb-2">JetBrains Mono</h3>
+        <div className="space-y-4">
+          <H1 font="jetbrains">Heading 1 - JetBrains Mono</H1>
+          <H2 font="jetbrains">Heading 2 - JetBrains Mono</H2>
+          <H3 font="jetbrains">Heading 3 - JetBrains Mono</H3>
+          <P font="jetbrains">Paragraph with JetBrains Mono. The quick brown fox jumps over the lazy dog. 0123456789</P>
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-bold mb-6 border-b pb-2">Sistema (default)</h3>
+        <div className="space-y-4">
+          <H1 font="default">Heading 1 - System Font</H1>
+          <H2 font="default">Heading 2 - System Font</H2>
+          <H3 font="default">Heading 3 - System Font</H3>
+          <P font="default">Paragraph with system font. The quick brown fox jumps over the lazy dog. 0123456789</P>
+        </div>
+      </div>
     </div>
   ),
 };
 
-export const SubtitleExample: StoryObj = {
+// Pesos de fuente
+export const FontWeights: StoryObj = {
   render: () => (
-    <div className="space-y-4">
-      <H2>Main Title</H2>
-      <Subtitle>This is a subtitle that provides additional context</Subtitle>
+    <div className="space-y-12">
+      <div>
+        <h3 className="text-lg font-bold mb-6 border-b pb-2">Nunito Sans - Pesos disponibles</h3>
+        <div className="space-y-3">
+          <P weight="light">Light (300) - The quick brown fox jumps over the lazy dog</P>
+          <P weight="medium">Medium (500) - The quick brown fox jumps over the lazy dog</P>
+          <P weight="bold">Bold (700) - The quick brown fox jumps over the lazy dog</P>
+          <P weight="black">Black (900) - The quick brown fox jumps over the lazy dog</P>
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-bold mb-6 border-b pb-2">JetBrains Mono - Pesos disponibles</h3>
+        <div className="space-y-3">
+          <P font="jetbrains" weight="light">Light (300) - The quick brown fox jumps over the lazy dog</P>
+          <P font="jetbrains" weight="medium">Medium (500) - The quick brown fox jumps over the lazy dog</P>
+          <P font="jetbrains" weight="bold">Bold (700) - The quick brown fox jumps over the lazy dog</P>
+        </div>
+      </div>
     </div>
   ),
 };
 
-export const LeadExample: StoryObj = {
+// Paleta de colores
+export const ColorPalette: StoryObj = {
   render: () => (
-    <div className="space-y-4 max-w-2xl">
-      <H2>Article Title</H2>
-      <Lead>
-        This is a lead paragraph that introduces the content. It&apos;s slightly larger 
-        and muted to draw attention without overwhelming the reader.
-      </Lead>
-      <P>
-        This is the main content that follows the lead paragraph. The lead helps 
-        to set the context for what comes next.
-      </P>
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-lg font-bold mb-4 border-b pb-2">Colores de la paleta Aloha</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4 border rounded">
+            <H3 color="olivo">Olivo</H3>
+            <P color="olivo">The quick brown fox jumps over the lazy dog</P>
+          </div>
+          <div className="p-4 border rounded">
+            <H3 color="lima">Lima</H3>
+            <P color="lima">The quick brown fox jumps over the lazy dog</P>
+          </div>
+          <div className="p-4 border rounded">
+            <H3 color="bosque">Bosque</H3>
+            <P color="bosque">The quick brown fox jumps over the lazy dog</P>
+          </div>
+          <div className="p-4 border rounded">
+            <H3 color="hueso">Hueso</H3>
+            <P color="hueso">The quick brown fox jumps over the lazy dog</P>
+          </div>
+          <div className="p-4 border rounded">
+            <H3 color="piedra">Piedra</H3>
+            <P color="piedra">The quick brown fox jumps over the lazy dog</P>
+          </div>
+          <div className="p-4 border rounded">
+            <H3 color="corteza">Corteza</H3>
+            <P color="corteza">The quick brown fox jumps over the lazy dog</P>
+          </div>
+          <div className="p-4 border rounded">
+            <H3 color="girasol">Girasol</H3>
+            <P color="girasol">The quick brown fox jumps over the lazy dog</P>
+          </div>
+          <div className="p-4 border rounded">
+            <H3 color="coral">Coral</H3>
+            <P color="coral">The quick brown fox jumps over the lazy dog</P>
+          </div>
+          <div className="p-4 border rounded">
+            <H3 color="aqua">Aqua</H3>
+            <P color="aqua">The quick brown fox jumps over the lazy dog</P>
+          </div>
+          <div className="p-4 border rounded">
+            <H3 color="lavanda">Lavanda</H3>
+            <P color="lavanda">The quick brown fox jumps over the lazy dog</P>
+          </div>
+          <div className="p-4 border rounded">
+            <H3 color="electrico">Eléctrico</H3>
+            <P color="electrico">The quick brown fox jumps over the lazy dog</P>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-bold mb-4 border-b pb-2">Colores del tema (adaptan a light/dark)</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4 border rounded">
+            <H4 color="theme-primary">Theme Primary</H4>
+            <P color="theme-primary">Cambia según el tema</P>
+          </div>
+          <div className="p-4 border rounded">
+            <H4 color="theme-text">Theme Text</H4>
+            <P color="theme-text">Cambia según el tema</P>
+          </div>
+          <div className="p-4 border rounded">
+            <H4 color="theme-highlight">Theme Highlight</H4>
+            <P color="theme-highlight">Cambia según el tema</P>
+          </div>
+          <div className="p-4 border rounded">
+            <H4 color="theme-background">Theme Background</H4>
+            <P color="theme-background">Cambia según el tema</P>
+          </div>
+        </div>
+      </div>
     </div>
   ),
 };
 
-export const SmallText: StoryObj = {
+// Ejemplo combinado de fuente y color
+export const FontAndColorCombinations: StoryObj = {
   render: () => (
-    <div className="space-y-2">
-      <P>This is regular text</P>
-      <Small>This is small text, useful for captions or footnotes</Small>
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-lg font-bold mb-4 border-b pb-2">Nunito Sans + Colores</h3>
+        <div className="space-y-3">
+          <H2 font="nunito" color="bosque">Título Principal en Bosque</H2>
+          <P font="nunito" color="olivo">Párrafo en Olivo con Nunito Sans</P>
+          <P font="nunito" color="coral" weight="bold">Texto destacado en Coral</P>
+          <Small font="nunito" color="lavanda">Texto pequeño en Lavanda</Small>
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-bold mb-4 border-b pb-2">JetBrains Mono + Colores</h3>
+        <div className="space-y-3">
+          <H2 font="jetbrains" color="electrico">Título Técnico en Eléctrico</H2>
+          <P font="jetbrains" color="piedra">Código o texto técnico en Piedra</P>
+          <P font="jetbrains" color="girasol" weight="bold">Alerta en Girasol</P>
+          <Small font="jetbrains" color="aqua">Nota técnica en Aqua</Small>
+        </div>
+      </div>
+
+      <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg">
+        <h3 className="text-lg font-bold mb-4 border-b pb-2">Combinación Premium</h3>
+        <H1 font="nunito" weight="black" color="bosque">
+          Aloha Design System
+        </H1>
+        <Subtitle font="nunito" weight="light" color="corteza">
+          Componentes hermosos y funcionales
+        </Subtitle>
+        <Lead font="nunito" color="olivo">
+          Un sistema de diseño completo con tipografías elegantes y una paleta de colores cuidadosamente seleccionada.
+        </Lead>
+        <P font="nunito" color="theme-text">
+          Utiliza Nunito Sans como fuente principal para textos legibles y amigables,
+          y JetBrains Mono para código y contenido técnico.
+        </P>
+      </div>
     </div>
   ),
 };
 
-export const MutedText: StoryObj = {
-  render: () => (
-    <div className="space-y-4">
-      <P>This is regular text with normal color</P>
-      <Muted>This is muted text, useful for secondary information</Muted>
-    </div>
-  ),
-};
-
-export const FullExample: StoryObj = {
+// Vista completa de todos los componentes
+export const AllComponents: StoryObj = {
   render: () => (
     <div className="max-w-3xl space-y-6">
-      <H1>Welcome to Our Platform</H1>
+      <H1>Heading 1 - Welcome to Aloha</H1>
       <Subtitle>Build amazing applications with our component library</Subtitle>
-      
+
       <Lead>
-        Our library provides a comprehensive set of components designed to help you 
+        Our library provides a comprehensive set of components designed to help you
         create beautiful and functional user interfaces quickly and efficiently.
       </Lead>
-      
+
       <H2>Getting Started</H2>
       <P>
-        To begin using our components, simply install the package and import what you need. 
+        To begin using our components, simply install the package and import what you need.
         Each component is fully typed and comes with extensive documentation.
       </P>
-      
+
       <H3>Installation</H3>
       <P>Run the following command in your terminal:</P>
-      <Small>npm install @srteam-dev/aloha-ui</Small>
-      
+      <Small font="jetbrains">npm install @srteam-dev/aloha-ui</Small>
+
       <H4>Important Notes</H4>
       <Muted>
         Make sure you have React 18 or higher installed in your project before using this library.
@@ -109,207 +296,48 @@ export const FullExample: StoryObj = {
   ),
 };
 
-// Font Examples
-export const JetBrainsMonoFont: StoryObj = {
-  render: () => (
-    <div className="space-y-6">
-      <H1 font="jetbrains">JetBrains Mono Heading 1</H1>
-      <H2 font="jetbrains">JetBrains Mono Heading 2</H2>
-      <H3 font="jetbrains">JetBrains Mono Heading 3</H3>
-      <P font="jetbrains">
-        This paragraph uses JetBrains Mono font. The quick brown fox jumps over the lazy dog.
-        123456789 - Perfect for code and technical content.
-      </P>
-    </div>
-  ),
+// Story específica para cada componente individual
+export const H1Example: StoryObj<{ font: FontFamily; weight?: any; color?: ColorOption }> = {
+  args: {
+    font: 'nunito',
+    color: 'default',
+  },
+  render: (args) => <H1 {...args}>This is a Heading 1</H1>,
 };
 
-export const NunitoSansFont: StoryObj = {
-  render: () => (
-    <div className="space-y-6">
-      <H1 font="nunito">Nunito Sans Heading 1</H1>
-      <H2 font="nunito">Nunito Sans Heading 2</H2>
-      <H3 font="nunito">Nunito Sans Heading 3</H3>
-      <P font="nunito">
-        This paragraph uses Nunito Sans font. The quick brown fox jumps over the lazy dog.
-        Perfect for readable and friendly content.
-      </P>
-    </div>
-  ),
+export const H2Example: StoryObj<{ font: FontFamily; weight?: any; color?: ColorOption }> = {
+  args: {
+    font: 'nunito',
+    color: 'default',
+  },
+  render: (args) => <H2 {...args}>This is a Heading 2</H2>,
 };
 
-export const FontWeights: StoryObj = {
-  render: () => (
-    <div className="space-y-8">
-      <div>
-        <h3 className="text-lg font-bold mb-4">JetBrains Mono Weights</h3>
-        <div className="space-y-2">
-          <P font="jetbrains" weight="light">Light (300) - The quick brown fox</P>
-          <P font="jetbrains" weight="medium">Medium (500) - The quick brown fox</P>
-          <P font="jetbrains" weight="bold">Bold (700) - The quick brown fox</P>
-        </div>
-      </div>
-      
-      <div>
-        <h3 className="text-lg font-bold mb-4">Nunito Sans Weights</h3>
-        <div className="space-y-2">
-          <P font="nunito" weight="light">Light (300) - The quick brown fox</P>
-          <P font="nunito" weight="medium">Medium (500) - The quick brown fox</P>
-          <P font="nunito" weight="bold">Bold (700) - The quick brown fox</P>
-          <P font="nunito" weight="black">Black (900) - The quick brown fox</P>
-        </div>
-      </div>
-    </div>
-  ),
+export const H3Example: StoryObj<{ font: FontFamily; weight?: any; color?: ColorOption }> = {
+  args: {
+    font: 'nunito',
+    color: 'default',
+  },
+  render: (args) => <H3 {...args}>This is a Heading 3</H3>,
 };
 
-export const FontComparison: StoryObj = {
-  render: () => (
-    <div className="space-y-12">
-      <div>
-        <h3 className="text-lg font-bold mb-6">Default System Font</h3>
-        <H1>Heading 1 - System Font</H1>
-        <H2>Heading 2 - System Font</H2>
-        <P>Paragraph with default system font. The quick brown fox jumps over the lazy dog.</P>
-      </div>
-
-      <div>
-        <h3 className="text-lg font-bold mb-6">JetBrains Mono</h3>
-        <H1 font="jetbrains">Heading 1 - JetBrains Mono</H1>
-        <H2 font="jetbrains">Heading 2 - JetBrains Mono</H2>
-        <P font="jetbrains">Paragraph with JetBrains Mono. The quick brown fox jumps over the lazy dog. 0123456789</P>
-      </div>
-
-      <div>
-        <h3 className="text-lg font-bold mb-6">Nunito Sans</h3>
-        <H1 font="nunito">Heading 1 - Nunito Sans</H1>
-        <H2 font="nunito">Heading 2 - Nunito Sans</H2>
-        <P font="nunito">Paragraph with Nunito Sans. The quick brown fox jumps over the lazy dog.</P>
-      </div>
-    </div>
-  ),
+export const H4Example: StoryObj<{ font: FontFamily; weight?: any; color?: ColorOption }> = {
+  args: {
+    font: 'nunito',
+    color: 'default',
+  },
+  render: (args) => <H4 {...args}>This is a Heading 4</H4>,
 };
 
-export const MixedFonts: StoryObj = {
-  render: () => (
-    <div className="max-w-3xl space-y-6">
-      <H1 font="nunito" weight="bold">Modern Design System</H1>
-      <Subtitle font="nunito" weight="light">
-        Combining elegance with functionality
-      </Subtitle>
-      
-      <P font="nunito">
-        This content uses Nunito Sans for a friendly, approachable feel. 
-        It&apos;s perfect for marketing and user-facing content.
-      </P>
-      
-      <H2 font="jetbrains" weight="medium">Technical Specifications</H2>
-      <P font="jetbrains" weight="light">
-        This section uses JetBrains Mono for a technical, code-like appearance.
-        Version: 1.0.0 | Build: 2024.12.20
-      </P>
-      
-      <div className="bg-gray-100 p-4 rounded">
-        <Small font="jetbrains" weight="medium">
-          Code snippet: import {`{ H1, P }`} from &apos;@srteam-dev/aloha-ui&apos;;
-        </Small>
-      </div>
-    </div>
-  ),
-};
-
-// Color Examples
-export const ColorPalette: StoryObj = {
-  render: () => (
-    <div className="space-y-6">
-      <H1 color="lima">Lima Color Heading</H1>
-      <H2 color="bosque">Bosque Color Heading</H2>
-      <H3 color="coral">Coral Color Heading</H3>
-      <P color="olivo">This paragraph uses the olivo color from the palette.</P>
-      <P color="lavanda">This paragraph uses the lavanda color.</P>
-      <P color="electrico">This paragraph uses the electrico color.</P>
-      <Small color="girasol">Small text with girasol color</Small>
-    </div>
-  ),
-};
-
-export const ThemeColors: StoryObj = {
-  render: () => (
-    <div className="space-y-6">
-      <H1 color="theme-primary">Primary Theme Color (adapts to light/dark)</H1>
-      <H2 color="theme-highlight">Highlight Theme Color</H2>
-      <P color="theme-text">This text uses the theme text color that changes with the theme.</P>
-      <Muted color="theme-primary">Muted text with primary theme color</Muted>
-    </div>
-  ),
-};
-
-export const ColorShowcase: StoryObj = {
-  render: () => (
-    <div className="space-y-8">
-      <div>
-        <h3 className="text-lg font-bold mb-4">Palette Colors</h3>
-        <div className="space-y-2">
-          <H3 color="olivo">Olivo (#383517)</H3>
-          <H3 color="lima">Lima (#B4DE6E)</H3>
-          <H3 color="bosque">Bosque (#648C2C)</H3>
-          <H3 color="hueso">Hueso (#F5F5DC)</H3>
-          <H3 color="piedra">Piedra (#4A443F)</H3>
-          <H3 color="corteza">Corteza (#6B5B3E)</H3>
-          <H3 color="girasol">Girasol (#FFD400)</H3>
-          <H3 color="coral">Coral (#FF6F61)</H3>
-          <H3 color="aqua">Aqua (#66FFCC)</H3>
-          <H3 color="lavanda">Lavanda (#B388D3)</H3>
-          <H3 color="electrico">Eléctrico (#0084FF)</H3>
-        </div>
-      </div>
-      
-      <div>
-        <h3 className="text-lg font-bold mb-4">Theme Colors (adapt to light/dark mode)</h3>
-        <div className="space-y-2">
-          <P color="theme-background">Theme Background Color</P>
-          <P color="theme-text">Theme Text Color</P>
-          <P color="theme-highlight">Theme Highlight Color</P>
-          <P color="theme-primary">Theme Primary Color</P>
-        </div>
-      </div>
-    </div>
-  ),
-};
-
-export const CombinedExample: StoryObj = {
-  render: () => (
-    <div className="max-w-3xl space-y-6">
-      <H1 font="nunito" weight="bold" color="bosque">
-        Welcome to Aloha UI
-      </H1>
-      <Subtitle font="nunito" weight="light" color="corteza">
-        Build beautiful applications with our design system
-      </Subtitle>
-      
-      <P font="nunito" color="theme-text">
-        Combine fonts, weights, and colors to create unique typography styles. 
-        This example shows how all props work together seamlessly.
-      </P>
-      
-      <H2 font="jetbrains" weight="medium" color="electrico">
-        Technical Features
-      </H2>
-      
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <H4 color="coral">Fast</H4>
-          <Small color="theme-text">Lightning-fast performance</Small>
-        </div>
-        <div>
-          <H4 color="aqua">Flexible</H4>
-          <Small color="theme-text">Highly customizable</Small>
-        </div>
-      </div>
-      
-      <P font="jetbrains" weight="light" color="lavanda">
-        const aloha = new DesignSystem();
-      </P>
-    </div>
+export const ParagraphExample: StoryObj<{ font: FontFamily; weight?: any; color?: ColorOption }> = {
+  args: {
+    font: 'nunito',
+    color: 'default',
+  },
+  render: (args) => (
+    <P {...args}>
+      This is a paragraph. The quick brown fox jumps over the lazy dog.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </P>
   ),
 };

@@ -1,13 +1,17 @@
 import React from 'react';
 import { cn } from '../lib/utils';
+import { P, FontFamily, FontWeight, ColorOption } from './Typography';
 
 export interface SwitchProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string;
+  font?: FontFamily;
+  weight?: FontWeight;
+  labelColor?: ColorOption;
 }
 
 const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
-  ({ className, label, id, ...props }, ref) => {
+  ({ className, label, font, weight, labelColor, id, ...props }, ref) => {
     const switchId = id || `switch-${Math.random().toString(36).substr(2, 9)}`;
 
     return (
@@ -31,7 +35,14 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           />
         </label>
         {label && (
-          <span className="text-base font-normal leading-none text-gray-700">{label}</span>
+          <P
+            font={font}
+            weight={weight}
+            color={labelColor}
+            className="leading-none m-0 flex items-center"
+          >
+            {label}
+          </P>
         )}
       </div>
     );

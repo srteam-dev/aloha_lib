@@ -34,6 +34,9 @@
   --colors-aqua: #66FFCC;
   --colors-lavanda: #B388D3;
   --colors-electrico: #0084FF;
+  --colors-marmol: #D8D8C1;
+  --colors-ice: #FEFEFC;
+  --colors-koala: #A69C8A;
 
   /* Tema claro */
   --theme-background: var(--colors-hueso);
@@ -76,5 +79,6 @@
 
 body {
   @apply bg-background text-foreground;
+  font-family: 'Nunito Sans', sans-serif;
   font-feature-settings: "rlig" 1, "calt" 1;
 }

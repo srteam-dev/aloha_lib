@@ -14,6 +14,20 @@ export { Image, type ImageProps } from './components/Image';
 export { Popup, type PopupProps } from './components/Popup';
 export { Error, type ErrorProps } from './components/Error';
 export { Loading, type LoadingProps } from './components/Loading';
+export { Logo, type LogoProps, type LogoVariant, type LogoSize } from './components/Logo';
+export { Icon, type IconProps, type IconName, type IconSize } from './components/Icon';
+export { Emoji, type EmojiProps, type EmojiName, type EmojiSize } from './components/Emoji';
+export { Pattern, type PatternProps, type PatternName, type PatternSize } from './components/Pattern';
+export { PatternGroup, type PatternGroupProps, type PatternGroupItem } from './components/PatternGroup';
+export { PatternFill, type PatternFillProps } from './components/PatternFill';
+export { Navbar, type NavbarProps, type NavbarVariant, type NavItem } from './components/Navbar';
+
+
+
+
+
+
+
 
 // Typography
 export { H1, H2, H3, H4, P, Subtitle, Lead, Small, Muted, type HeadingProps, type ParagraphProps, type SmallProps, type FontFamily, type FontWeight, type ColorOption } from './components/Typography';

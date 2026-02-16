@@ -150,7 +150,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
 
     // Fallback: devolver un span si no hay to ni href
     return (
-      <span ref={ref as any} className={linkClasses}>
+      <span ref={ref as React.Ref<HTMLSpanElement>} className={linkClasses}>
         {children}
       </span>
     );

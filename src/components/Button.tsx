@@ -31,7 +31,7 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   /** Click handler function */
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -39,26 +39,55 @@ export interface ButtonProps
   disabled?: boolean;
   /** Loading state */
   loading?: boolean;
-  /** Color from Aloha palette */
+  /** Background color from Aloha palette */
   color?: ColorName;
   /** Text color from Aloha palette */
   textColor?: ColorName;
+  /** Border color from Aloha palette */
+  borderColor?: ColorName;
   /** Icon or image element to show on the left */
   icon?: React.ReactNode;
+  /** Border width (1-4px) */
+  borderWidth?: 1 | 2 | 3 | 4;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, loading, disabled, color, textColor, icon, children, style, ...props }, ref) => {
+  ({ className, variant, size, loading, disabled, color, textColor, borderColor, icon, children, style, borderWidth = 1, ...props }, ref) => {
     const customStyle: React.CSSProperties = {};
-    
+
+    // Aplicar color de fondo si se especifica
     if (color) {
       customStyle.backgroundColor = colors[color];
     }
-    
+
+    // Aplicar color de texto si se especifica
     if (textColor) {
       customStyle.color = colors[textColor];
-    } else if (color && !textColor) {
+    } else if (color && !textColor && variant !== 'outline') {
+      // Si hay color de fondo pero no de texto (excepto outline), usar blanco por defecto
       customStyle.color = '#fff';
+    }
+
+    // Aplicar color de borde si se especifica
+    if (borderColor) {
+      customStyle.borderColor = colors[borderColor];
+      customStyle.borderWidth = `${borderWidth}px`;
+      customStyle.borderStyle = 'solid';
+    }
+    // Para variant outline sin borderColor especificado pero con color
+    else if (variant === 'outline' && color) {
+      customStyle.borderColor = colors[color];
+      customStyle.borderWidth = `${borderWidth}px`;
+      if (!textColor) {
+        customStyle.color = colors[color];
+      }
+      if (!color) {
+        customStyle.backgroundColor = 'transparent';
+      }
+    }
+    // Para variant outline sin colores personalizados
+    else if (variant === 'outline' && borderWidth > 1) {
+      customStyle.borderWidth = `${borderWidth}px`;
     }
 
     const finalStyle = { ...customStyle, ...style };

@@ -32,9 +32,12 @@ function App() {
 
 ## 🎨 Features
 
-- **20+ UI Components**: Button, Card, Input, Badge, Avatar, Grid, Image, Popup, Loading, Error, etc.
+- **25+ UI Components**: Button, Card, Input, Badge, Avatar, Grid, Image, Popup, Loading, Error, Navbar, etc.
+- **Pattern System**: Pattern, PatternGroup, PatternFill - Create beautiful pattern-based designs
+- **Emoji System**: 8 SVG emojis ready to use
+- **Advanced Grid**: Bento UI layouts with col/row span support (1-12 columns)
 - **Typography System**: H1-H4, P, Subtitle, Lead, Small, Muted with font, color, and weight options
-- **Color Palette**: 11 predefined colors (olivo, lima, bosque, hueso, piedra, corteza, girasol, coral, aqua, lavanda, eléctrico)
+- **Color Palette**: 14 predefined colors (olivo, lima, bosque, hueso, piedra, corteza, girasol, coral, aqua, lavanda, electrico, marmol, ice, koala)
 - **Theme System**: Adaptive colors for light/dark mode (theme-background, theme-text, theme-highlight, theme-primary)
 - **Two Fonts**: JetBrains Mono (monospace) and Nunito Sans (sans-serif) with multiple weights (light, medium, bold, black)
 - **Dark Mode Support**: Theme colors that adapt automatically
@@ -43,6 +46,66 @@ function App() {
 - **Storybook**: Interactive component documentation
 
 ## 💡 Usage Examples
+
+### Pattern Components
+
+```tsx
+import { Pattern, PatternFill, PatternGroup } from 'aloha-ui-library';
+
+// Single pattern
+<Pattern name="face1" size="xl" color="bosque" />
+
+// Auto-filling pattern grid
+<PatternFill
+  width={800}
+  height={400}
+  patternSize={80}
+  gap={10}
+  colors={['bosque', 'lima']}
+  randomRotation
+  backgroundColor="ice"
+/>
+
+// Group of patterns with custom rotations
+<PatternGroup
+  direction="row"
+  size="lg"
+  patterns={[
+    { pattern: 'face1', color: 'bosque', rotation: 0 },
+    { pattern: 'face2', color: 'lima', rotation: 90 },
+  ]}
+/>
+```
+
+### Emoji Components
+
+```tsx
+import { Emoji } from 'aloha-ui-library';
+
+<Emoji name="happy" size="lg" />
+<Emoji name="melt" size="xl" />
+```
+
+### Advanced Grid (Bento UI)
+
+```tsx
+import { Grid, GridItem } from 'aloha-ui-library';
+
+// Bento-style layout
+<Grid columns={4} gap={4}>
+  <GridItem colSpan={2} rowSpan={2} backgroundColor="bosque" padding={8} rounded="2xl">
+    <h2>Main Content</h2>
+  </GridItem>
+  
+  <GridItem backgroundColor="lima" padding={6} rounded="xl">
+    <div>Card 1</div>
+  </GridItem>
+  
+  <GridItem backgroundColor="coral" padding={6} rounded="xl">
+    <div>Card 2</div>
+  </GridItem>
+</Grid>
+```
 
 ### Typography with Colors
 

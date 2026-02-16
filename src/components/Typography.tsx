@@ -3,9 +3,10 @@ import { cn } from '../lib/utils';
 
 export type FontFamily = 'jetbrains' | 'nunito' | 'default';
 export type FontWeight = 'light' | 'medium' | 'bold' | 'black';
-export type ColorOption = 
-  | 'olivo' | 'lima' | 'bosque' | 'hueso' | 'piedra' | 'corteza' 
+export type ColorOption =
+  | 'olivo' | 'lima' | 'bosque' | 'hueso' | 'piedra' | 'corteza'
   | 'girasol' | 'coral' | 'aqua' | 'lavanda' | 'electrico'
+  | 'marmol' | 'ice' | 'koala'
   | 'theme-background' | 'theme-text' | 'theme-highlight' | 'theme-primary'
   | 'default';
 
@@ -24,11 +25,11 @@ const fontWeightClasses: Record<FontWeight, string> = {
 
 const getColorStyle = (color?: ColorOption): React.CSSProperties => {
   if (!color || color === 'default') return {};
-  
+
   if (color.startsWith('theme-')) {
     return { color: `var(--${color})` };
   }
-  
+
   return { color: `var(--colors-${color})` };
 };
 
@@ -41,7 +42,7 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 }
 
 export const H1 = React.forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ className, children, font = 'default', weight, color, style, ...props }, ref) => {
+  ({ className, children, font = 'nunito', weight, color, style, ...props }, ref) => {
     return (
       <h1
         ref={ref}
@@ -62,7 +63,7 @@ export const H1 = React.forwardRef<HTMLHeadingElement, HeadingProps>(
 H1.displayName = 'H1';
 
 export const H2 = React.forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ className, children, font = 'default', weight, color, style, ...props }, ref) => {
+  ({ className, children, font = 'nunito', weight, color, style, ...props }, ref) => {
     return (
       <h2
         ref={ref}
@@ -83,7 +84,7 @@ export const H2 = React.forwardRef<HTMLHeadingElement, HeadingProps>(
 H2.displayName = 'H2';
 
 export const H3 = React.forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ className, children, font = 'default', weight, color, style, ...props }, ref) => {
+  ({ className, children, font = 'nunito', weight, color, style, ...props }, ref) => {
     return (
       <h3
         ref={ref}
@@ -104,7 +105,7 @@ export const H3 = React.forwardRef<HTMLHeadingElement, HeadingProps>(
 H3.displayName = 'H3';
 
 export const H4 = React.forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ className, children, font = 'default', weight, color, style, ...props }, ref) => {
+  ({ className, children, font = 'nunito', weight, color, style, ...props }, ref) => {
     return (
       <h4
         ref={ref}
@@ -133,7 +134,7 @@ export interface ParagraphProps extends React.HTMLAttributes<HTMLParagraphElemen
 }
 
 export const P = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
-  ({ className, children, font = 'default', weight, color, style, ...props }, ref) => {
+  ({ className, children, font = 'nunito', weight, color, style, ...props }, ref) => {
     return (
       <p
         ref={ref}
@@ -154,7 +155,7 @@ export const P = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
 P.displayName = 'P';
 
 export const Subtitle = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
-  ({ className, children, font = 'default', weight, color, style, ...props }, ref) => {
+  ({ className, children, font = 'nunito', weight, color, style, ...props }, ref) => {
     return (
       <p
         ref={ref}
@@ -175,7 +176,7 @@ export const Subtitle = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
 Subtitle.displayName = 'Subtitle';
 
 export const Lead = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
-  ({ className, children, font = 'default', weight, color, style, ...props }, ref) => {
+  ({ className, children, font = 'nunito', weight, color, style, ...props }, ref) => {
     return (
       <p
         ref={ref}
@@ -204,7 +205,7 @@ export interface SmallProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 export const Small = React.forwardRef<HTMLElement, SmallProps>(
-  ({ className, children, font = 'default', weight, color, style, ...props }, ref) => {
+  ({ className, children, font = 'nunito', weight, color, style, ...props }, ref) => {
     return (
       <small
         ref={ref}
@@ -225,7 +226,7 @@ export const Small = React.forwardRef<HTMLElement, SmallProps>(
 Small.displayName = 'Small';
 
 export const Muted = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
-  ({ className, children, font = 'default', weight, color, style, ...props }, ref) => {
+  ({ className, children, font = 'nunito', weight, color, style, ...props }, ref) => {
     return (
       <p
         ref={ref}
