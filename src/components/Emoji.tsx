@@ -2,14 +2,14 @@ import React from 'react';
 import { cn } from '../lib/utils';
 
 // Importar los SVGs de emojis como URLs
-import crazyEmoji from '../resources/emojis/crazy.svg?url';
-import explosionEmoji from '../resources/emojis/explosion.svg?url';
-import happyEmoji from '../resources/emojis/happy.svg?url';
-import hiEmoji from '../resources/emojis/hi.svg?url';
-import impactEmoji from '../resources/emojis/impact.svg?url';
-import interestingEmoji from '../resources/emojis/interesting.svg?url';
-import meltEmoji from '../resources/emojis/melt.svg?url';
-import mewingEmoji from '../resources/emojis/mewing.svg?url';
+import crazyEmoji from '../resources/emojis/crazy.svg';
+import explosionEmoji from '../resources/emojis/explosion.svg';
+import happyEmoji from '../resources/emojis/happy.svg';
+import hiEmoji from '../resources/emojis/hi.svg';
+import impactEmoji from '../resources/emojis/impact.svg';
+import interestingEmoji from '../resources/emojis/interesting.svg';
+import meltEmoji from '../resources/emojis/melt.svg';
+import mewingEmoji from '../resources/emojis/mewing.svg';
 
 // Mapeo de nombres a URLs de emojis
 const emojiMap = {

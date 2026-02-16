@@ -1,6 +1,6 @@
 {
   "name": "aloha-ui-library",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A comprehensive React design system with UI components for social applications",
   "homepage": "https://github.com/srteam-dev/aloha_lib#readme",
   "repository": {
@@ -45,7 +45,7 @@
     "type-check": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prepublishOnly": "npm run lint && npm run type-check && npm run build",
+    "_prepublishOnly": "npm run lint && npm run type-check && npm run build",
     "publish:npm": "npm publish",
     "version:patch": "npm version patch",
     "version:minor": "npm version minor",
@@ -77,6 +77,7 @@
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.5",
+    "@rollup/plugin-url": "^8.0.2",
     "@storybook/addon-essentials": "^7.5.0",
     "@storybook/addon-interactions": "^7.5.0",
     "@storybook/addon-links": "^7.5.0",

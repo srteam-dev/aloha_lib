@@ -3,9 +3,9 @@ import { cn } from '../lib/utils';
 import { ColorOption } from './Typography';
 
 // Importar los logos como URLs
-import horizontalLogo from '../resources/logo/Horizontal.svg?url';
-import verticalLogo from '../resources/logo/Vertical.svg?url';
-import onlyIconLogo from '../resources/logo/OnlyIcon.svg?url';
+import horizontalLogo from '../resources/logo/Horizontal.svg';
+import verticalLogo from '../resources/logo/Vertical.svg';
+import onlyIconLogo from '../resources/logo/OnlyIcon.svg';
 
 export type LogoVariant = 'horizontal' | 'vertical' | 'icon';
 export type LogoSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';

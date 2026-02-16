@@ -3,12 +3,12 @@ import { cn } from '../lib/utils';
 import { ColorName, colors } from '../colors';
 
 // Importar los SVGs de patrones
-import face1 from '../resources/patrons/face1.svg?url';
-import face2 from '../resources/patrons/face2.svg?url';
-import face3 from '../resources/patrons/face3.svg?url';
-import face4 from '../resources/patrons/face4.svg?url';
-import face5 from '../resources/patrons/face5.svg?url';
-import face6 from '../resources/patrons/face6.svg?url';
+import face1 from '../resources/patrons/face1.svg';
+import face2 from '../resources/patrons/face2.svg';
+import face3 from '../resources/patrons/face3.svg';
+import face4 from '../resources/patrons/face4.svg';
+import face5 from '../resources/patrons/face5.svg';
+import face6 from '../resources/patrons/face6.svg';
 
 // Mapeo de nombres a URLs de patrones
 const patternMap = {

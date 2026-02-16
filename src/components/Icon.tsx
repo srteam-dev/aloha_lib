@@ -3,15 +3,15 @@ import { cn } from '../lib/utils';
 import { ColorOption } from './Typography';
 
 // Importar los SVGs como URLs
-import chatIcon from '../resources/icons/chat.svg?url';
-import friendsIcon from '../resources/icons/friends.svg?url';
-import homeIcon from '../resources/icons/home.svg?url';
-import langIcon from '../resources/icons/lang.svg?url';
-import locationIcon from '../resources/icons/location.svg?url';
-import mailIcon from '../resources/icons/mail.svg?url';
-import musicIcon from '../resources/icons/music.svg?url';
-import notifyIcon from '../resources/icons/notify.svg?url';
-import settingsIcon from '../resources/icons/settings.svg?url';
+import chatIcon from '../resources/icons/chat.svg';
+import friendsIcon from '../resources/icons/friends.svg';
+import homeIcon from '../resources/icons/home.svg';
+import langIcon from '../resources/icons/lang.svg';
+import locationIcon from '../resources/icons/location.svg';
+import mailIcon from '../resources/icons/mail.svg';
+import musicIcon from '../resources/icons/music.svg';
+import notifyIcon from '../resources/icons/notify.svg';
+import settingsIcon from '../resources/icons/settings.svg';
 
 export type IconName =
     | 'chat'

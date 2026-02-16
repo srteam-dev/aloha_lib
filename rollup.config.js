@@ -3,6 +3,7 @@ const commonjs = require('@rollup/plugin-commonjs');
 const typescript = require('@rollup/plugin-typescript');
 const babel = require('@rollup/plugin-babel');
 const postcss = require('rollup-plugin-postcss');
+const url = require('@rollup/plugin-url');
 
 const packageJson = require('./package.json');
 
@@ -24,6 +25,11 @@ module.exports = [
       },
     ],
     plugins: [
+      url({
+        include: ['**/*.svg'],
+        limit: Infinity, // Always inline SVGs as data URIs
+        fileName: '[name][extname]',
+      }),
       resolve({
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       }),
