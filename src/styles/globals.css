@@ -82,3 +82,406 @@ body {
   font-family: 'Nunito Sans', sans-serif;
   font-feature-settings: "rlig" 1, "calt" 1;
 }
+
+/* ── ChatMessage ─────────────────────────────────────────── */
+
+/* Burbuja base */
+.chat-message {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 72%;
+  padding: 12px 16px 12px 16px;
+  border-radius: 18px;
+  font-family: var(--font-nunito);
+  word-break: break-word;
+  position: relative;
+  /* Colores desde CSS custom properties (inyectadas vía React inline style) */
+  background-color: var(--chat-bg);
+}
+
+/* ── Pico / cola convexa ──────────────────────────────────── */
+/*
+  El ::after es un bloque del mismo color que la burbuja, posicionado
+  en la esquina inferior. border-radius en la esquina exterior crea
+  la curva redondeada hacia afuera (convexa), como en la imagen.
+*/
+
+/* Recibido: burbuja izquierda — pico abajo-izquierda */
+.chat-message--received {
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.chat-message--received::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 0;
+  width: 22px;
+  height: 16px;
+  background: var(--chat-bg);
+  border-radius: 0 0 60% 0;
+}
+
+/* Enviado: burbuja derecha — pico abajo-derecha */
+.chat-message--sent {
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-message--sent::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  /* DEBAJO de la burbuja */
+  right: 0px;
+  /* alineado con el lado derecho */
+  width: 22px;
+  height: 16px;
+  background: var(--chat-bg);
+  /* media elipse apuntando hacia abajo, más pronunciada en la derecha */
+  border-radius: 0 0 0 60%;
+}
+
+/* ── Header: avatar + nombre + separador + hora ───────────── */
+.chat-message__header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  /* 13px */
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--chat-hdr);
+}
+
+/* Avatar pequeño dentro de la burbuja */
+.chat-message__avatar {
+  width: 22px !important;
+  height: 22px !important;
+  flex-shrink: 0;
+}
+
+.chat-message__name {
+  font-weight: 700;
+}
+
+.chat-message__separator {
+  font-weight: 400;
+  opacity: 0.6;
+}
+
+.chat-message__time {
+  font-weight: 400;
+  opacity: 0.6;
+}
+
+/* ── Texto del mensaje ────────────────────────────────────── */
+.chat-message__body {
+  margin: 0;
+  font-size: 0.9375rem;
+  /* 15px */
+  line-height: 1.5;
+  font-weight: 700;
+  color: var(--chat-msg);
+}
+
+/* ── Contenedor de hilo / conversación ───────────────────── */
+.chat-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  padding: 16px;
+}
+
+/* ────────────────────────────────────────────────────────── */
+/* ── TextDivider ──────────────────────────────────────────── */
+/* ────────────────────────────────────────────────────────── */
+
+/* Layout: [avatares] texto ─────────── [botón]
+   La línea ocupa todo el espacio libre entre texto y botón. */
+.text-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Reset de márgenes del navegador en elementos de texto
+   dentro del divider (h1-h4 y p tienen margin-block por defecto
+   que desplaza el texto hacia abajo cuando hay avatares) */
+.text-divider h1,
+.text-divider h2,
+.text-divider h3,
+.text-divider h4,
+.text-divider p,
+.text-divider small {
+  margin: 0;
+  line-height: 1;
+}
+
+/* Stack de avatares a la izquierda del texto */
+.text-divider__avatar-stack {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  flex-shrink: 0;
+}
+
+.text-divider__stack-avatar {
+  margin-left: -6px;
+  outline: 2px solid var(--td-ring, #fff);
+  outline-offset: 0;
+  border-radius: 50%;
+}
+
+.text-divider__avatar-stack>*:last-child {
+  margin-left: 0;
+}
+
+/* Línea: ocupa todo el espacio libre entre texto y botón */
+.text-divider__line {
+  flex: 1;
+}
+
+/* Slot derecho (botón, etc.) */
+.text-divider__right {
+  flex-shrink: 0;
+}
+
+/* ────────────────────────────────────────────────────────── */
+/* ── QuestionCard ─────────────────────────────────────────── */
+/* ────────────────────────────────────────────────────────── */
+
+.question-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background-color: var(--qc-bg);
+  font-family: var(--font-nunito);
+  box-sizing: border-box;
+}
+
+/* ── Badge / etiqueta de la pregunta ───────────────────────── */
+.question-card__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 0.5rem;
+  background-color: var(--qc-label-bg);
+  width: fit-content;
+}
+
+.question-card__label-text {
+  font-size: 0.8125rem;
+  /* 13px */
+  font-weight: 700;
+  line-height: 1;
+  color: var(--qc-label-txt);
+}
+
+/* ── Lista de respondents (estados responded / closed) ─────── */
+.question-card__respondents {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.question-card__respondent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.question-card__respondent-text {
+  font-size: 0.875rem;
+  /* 14px */
+  font-weight: 600;
+  color: var(--qc-resp-txt);
+}
+
+/* ── Vista revealed: pregunta + chips de respuesta ─────────── */
+.question-card__revealed {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.question-card__question-text {
+  margin: 0;
+  font-size: 0.9375rem;
+  padding: 0.3rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--qc-q-txt);
+  border-radius: 0.4rem;
+  background-color: var(--qc-btn-bg);
+}
+
+.question-card__answers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.question-card__answer-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.question-card__answer-name {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--qc-resp-txt);
+  min-width: 32px;
+}
+
+.question-card__answer-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 12px;
+  border-radius: 0.4rem;
+  background-color: var(--qc-ans-bg);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--qc-ans-txt);
+}
+
+/* ── Botón Responder ───────────────────────────────────────── */
+.question-card__btn {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--qc-btn-bg);
+  color: var(--qc-btn-txt);
+  font-family: var(--font-nunito);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+  text-align: center;
+}
+
+.question-card__btn:hover {
+  opacity: 0.88;
+}
+
+.question-card__btn:active {
+  transform: scale(0.98);
+  opacity: 0.75;
+}
+
+/* ────────────────────────────────────────────────────────── */
+/* ── FriendListItem ───────────────────────────────────────── */
+/* ────────────────────────────────────────────────────────── */
+
+/* Fila base: botón clickable, ancho completo */
+.friend-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 14px;
+  background-color: var(--fi-bg);
+  font-family: var(--font-nunito);
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+  box-sizing: border-box;
+}
+
+.friend-list-item:hover {
+  opacity: 0.88;
+}
+
+.friend-list-item:active {
+  transform: scale(0.98);
+  opacity: 0.75;
+}
+
+/* Lado izquierdo (avatar/stack + texto) */
+.friend-list-item__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Variante user ─────────────────────────────────────────── */
+.friend-list-item__name {
+  font-size: 0.9375rem;
+  /* 15px */
+  font-weight: 700;
+  color: var(--fi-name);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Variante group: stack de avatares solapados ─────────── */
+.friend-list-item__avatar-stack {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  /* el primero queda arriba visualmente */
+}
+
+/* Cada avatar del stack se superpone con el siguiente */
+.friend-list-item__stack-avatar {
+  margin-left: -10px;
+  /* solapamiento */
+  outline: 2px solid var(--fi-ring);
+  outline-offset: 0;
+  border-radius: 50%;
+}
+
+/* El primer avatar (visualmente delantero) no tiene margen negativo extra */
+.friend-list-item__avatar-stack>*:last-child {
+  margin-left: 0;
+}
+
+/* Contador + etiqueta */
+.friend-list-item__count-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  margin-left: 2px;
+}
+
+.friend-list-item__count {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--fi-count);
+  line-height: 1;
+}
+
+.friend-list-item__count-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--fi-count-label);
+}
+
+/* ── Chevron ──────────────────────────────────────────────── */
+.friend-list-item__chevron {
+  flex-shrink: 0;
+  color: var(--fi-chevron);
+  margin-left: 8px;
+}

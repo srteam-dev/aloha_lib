@@ -11,7 +11,7 @@ const meta = {
     argTypes: {
         name: {
             control: 'select',
-            options: ['chat', 'friends', 'home', 'lang', 'location', 'mail', 'music', 'notify', 'settings'],
+            options: ['chat', 'friends', 'home', 'lang', 'location', 'mail', 'music', 'notify', 'settings', 'streak'],
             description: 'Nombre del icono',
         },
         size: {
@@ -93,6 +93,10 @@ export const AllIcons: Story = {
             <div className="flex flex-col items-center gap-2">
                 <Icon name="lang" size="lg" />
                 <span className="text-sm">Lang</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+                <Icon name="streak" size="lg" />
+                <span className="text-sm">Streak</span>
             </div>
         </div>
     ),

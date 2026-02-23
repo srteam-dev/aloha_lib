@@ -12,6 +12,7 @@ import mailIcon from '../resources/icons/mail.svg';
 import musicIcon from '../resources/icons/music.svg';
 import notifyIcon from '../resources/icons/notify.svg';
 import settingsIcon from '../resources/icons/settings.svg';
+import streakIcon from '../resources/icons/streak.svg';
 
 export type IconName =
     | 'chat'
@@ -22,7 +23,8 @@ export type IconName =
     | 'mail'
     | 'music'
     | 'notify'
-    | 'settings';
+    | 'settings'
+    | 'streak';
 
 export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
@@ -36,6 +38,7 @@ const iconMap: Record<IconName, string> = {
     music: musicIcon,
     notify: notifyIcon,
     settings: settingsIcon,
+    streak: streakIcon,
 };
 
 const sizeClasses: Record<IconSize, string> = {
