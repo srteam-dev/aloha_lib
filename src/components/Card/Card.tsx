@@ -5,11 +5,35 @@ import { H1, H2, H3, H4, P, Small, FontFamily, FontWeight, ColorOption } from '.
 export type CardSize = 'full' | 'constrained' | 'auto';
 export type BorderRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 export type TitleComponent = 'h1' | 'h2' | 'h3' | 'h4';
+export type SpacingSize = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 const sizeClasses: Record<CardSize, string> = {
   full: 'w-full',
   constrained: 'max-w-md',
   auto: 'w-auto',
+};
+
+const spacingValues: Record<SpacingSize, string> = {
+  none: '0',
+  xs: '0.25rem',
+  sm: '0.5rem',
+  md: '1rem',
+  lg: '1.5rem',
+  xl: '2rem',
+};
+
+const buildSpacingStyle = (
+  padding?: SpacingSize | string,
+  margin?: SpacingSize | string
+): React.CSSProperties => {
+  const style: React.CSSProperties = {};
+  if (padding !== undefined) {
+    style.padding = spacingValues[padding as SpacingSize] ?? padding;
+  }
+  if (margin !== undefined) {
+    style.margin = spacingValues[margin as SpacingSize] ?? margin;
+  }
+  return style;
 };
 
 const borderRadiusClasses: Record<BorderRadius, string> = {
@@ -78,6 +102,10 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   backgroundColor?: ColorOption;
   borderColor?: ColorOption;
   shadow?: boolean;
+  /** Padding del card. Acepta token ('none','xs','sm','md','lg','xl') o valor CSS ('1rem', '8px 16px') */
+  padding?: SpacingSize | string;
+  /** Margin del card. Acepta token o valor CSS */
+  margin?: SpacingSize | string;
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
@@ -89,6 +117,9 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     backgroundColor = 'default',
     borderColor = 'default',
     shadow = true,
+    padding,
+    margin,
+    style,
     ...props
   }, ref) => (
     <div
@@ -103,6 +134,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
         shadow ? 'shadow-sm' : '',
         className
       )}
+      style={{ ...buildSpacingStyle(padding, margin), ...style }}
       {...props}
     />
   )
@@ -110,16 +142,23 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
 Card.displayName = 'Card';
 
 // Subcomponentes flexibles
-const CardHeader = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn('flex flex-col space-y-1.5 p-6', className)}
-    {...props}
-  />
-));
+export interface CardSectionProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Padding de la sección. Acepta token o valor CSS */
+  padding?: SpacingSize | string;
+  /** Margin de la sección. Acepta token o valor CSS */
+  margin?: SpacingSize | string;
+}
+
+const CardHeader = React.forwardRef<HTMLDivElement, CardSectionProps>(
+  ({ className, padding, margin, style, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn('flex flex-col space-y-1.5', padding === undefined ? 'p-6' : '', className)}
+      style={{ ...buildSpacingStyle(padding, margin), ...style }}
+      {...props}
+    />
+  )
+);
 CardHeader.displayName = 'CardHeader';
 
 export interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
@@ -187,24 +226,28 @@ const CardDescription = React.forwardRef<HTMLParagraphElement, CardDescriptionPr
 );
 CardDescription.displayName = 'CardDescription';
 
-const CardContent = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn('p-6 pt-0', className)} {...props} />
-));
+const CardContent = React.forwardRef<HTMLDivElement, CardSectionProps>(
+  ({ className, padding, margin, style, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn(padding === undefined ? 'p-6 pt-0' : '', className)}
+      style={{ ...buildSpacingStyle(padding, margin), ...style }}
+      {...props}
+    />
+  )
+);
 CardContent.displayName = 'CardContent';
 
-const CardFooter = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn('flex items-center p-6 pt-0', className)}
-    {...props}
-  />
-));
+const CardFooter = React.forwardRef<HTMLDivElement, CardSectionProps>(
+  ({ className, padding, margin, style, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn('flex items-center', padding === undefined ? 'p-6 pt-0' : '', className)}
+      style={{ ...buildSpacingStyle(padding, margin), ...style }}
+      {...props}
+    />
+  )
+);
 CardFooter.displayName = 'CardFooter';
 
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };
