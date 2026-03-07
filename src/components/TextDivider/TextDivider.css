@@ -1,0 +1,45 @@
+/* ── TextDivider ──────────────────────────────────────────── */
+
+.text-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.text-divider h1,
+.text-divider h2,
+.text-divider h3,
+.text-divider h4,
+.text-divider p,
+.text-divider small {
+  margin: 0;
+  line-height: 1;
+}
+
+.text-divider__avatar-stack {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  flex-shrink: 0;
+}
+
+.text-divider__stack-avatar {
+  margin-left: -6px;
+  outline: 2px solid var(--td-ring, #fff);
+  outline-offset: 0;
+  border-radius: 50%;
+}
+
+.text-divider__avatar-stack > *:last-child {
+  margin-left: 0;
+}
+
+.text-divider__line {
+  flex: 1;
+}
+
+.text-divider__right {
+  flex-shrink: 0;
+}
+

@@ -1,0 +1,127 @@
+/* ── QuestionCard ─────────────────────────────────────────── */
+
+.question-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background-color: var(--qc-bg);
+  font-family: var(--font-nunito);
+  box-sizing: border-box;
+}
+
+.question-card__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 0.5rem;
+  background-color: var(--qc-label-bg);
+  width: fit-content;
+}
+
+.question-card__label-text {
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 700;
+  line-height: 1;
+  color: var(--qc-label-txt);
+}
+
+.question-card__respondents {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.question-card__respondent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.question-card__respondent-text {
+  font-size: 0.875rem; /* 14px */
+  font-weight: 600;
+  color: var(--qc-resp-txt);
+}
+
+.question-card__revealed {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.question-card__question-text {
+  margin: 0;
+  font-size: 0.9375rem;
+  padding: 0.3rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--qc-q-txt);
+  border-radius: 0.4rem;
+  background-color: var(--qc-btn-bg);
+}
+
+.question-card__answers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.question-card__answer-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.question-card__answer-name {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--qc-resp-txt);
+  min-width: 32px;
+}
+
+.question-card__answer-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 12px;
+  border-radius: 0.4rem;
+  background-color: var(--qc-ans-bg);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--qc-ans-txt);
+}
+
+.question-card__btn {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--qc-btn-bg);
+  color: var(--qc-btn-txt);
+  font-family: var(--font-nunito);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+  text-align: center;
+}
+
+.question-card__btn:hover {
+  opacity: 0.88;
+}
+
+.question-card__btn:active {
+  transform: scale(0.98);
+  opacity: 0.75;
+}
+

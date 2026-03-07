@@ -26,13 +26,6 @@ export { PatternGroup, type PatternGroupProps, type PatternGroupItem } from './c
 export { PatternFill, type PatternFillProps } from './components/PatternFill';
 export { Navbar, type NavbarProps, type NavbarVariant, type NavItem } from './components/Navbar';
 
-
-
-
-
-
-
-
 // Typography
 export { H1, H2, H3, H4, P, Subtitle, Lead, Small, Muted, type HeadingProps, type ParagraphProps, type SmallProps, type FontFamily, type FontWeight, type ColorOption } from './components/Typography';
 
@@ -51,3 +44,4 @@ export { ColorPalette, ColorSwatch, type ColorPaletteProps, type ColorSwatchProp
 
 // Styles
 import './styles/globals.css';
+
