@@ -13,6 +13,8 @@ export { Link, type LinkProps } from './components/Link';
 export { Image, type ImageProps } from './components/Image';
 export { Popup, type PopupProps } from './components/Popup';
 export { Error, type ErrorProps } from './components/Error';
+export { FormError, type FormErrorProps } from './components/FormError';
+export { Toast, type ToastProps } from './components/Toast';
 export { Loading, type LoadingProps } from './components/Loading';
 export { Logo, type LogoProps, type LogoVariant, type LogoSize } from './components/Logo';
 export { Icon, type IconProps, type IconName, type IconSize } from './components/Icon';
