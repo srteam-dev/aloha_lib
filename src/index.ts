@@ -4,6 +4,7 @@ export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
 export { Avatar, type AvatarProps } from './components/Avatar';
 export { Badge, badgeVariants, type BadgeProps } from './components/Badge';
 export { Input, type InputProps } from './components/Input';
+export { Select, type SelectProps, type SelectOption } from './components/Select';
 export { Checkbox, type CheckboxProps } from './components/Checkbox';
 export { Switch, type SwitchProps } from './components/Switch';
 export { SearchInput, type SearchInputProps } from './components/SearchInput';
