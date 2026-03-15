@@ -1,47 +1,109 @@
 ﻿import React from 'react';
 import { cn } from '../../lib/utils';
+import { getAvatarPartImage } from './avatarParts';
+import './Avatar.css';
 
-export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
-  src?: string;
-  alt?: string;
-  fallback?: string;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+export interface AvatarAttributes {
+  skinId?: number;
+  eyebrowId?: number;
+  eyesId?: number;
+  facialHairId?: number;
+  hairId?: number;
+  mouthId?: number;
 }
 
-const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
-  ({ className, src, alt, fallback, size = 'md', ...props }, ref) => {
-    const [imageFailed, setImageFailed] = React.useState(false);
+export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
+  emoji: AvatarAttributes;
+  size?: number;
+}
 
-    const sizeClasses = {
-      sm: 'h-8 w-8 text-xs',
-      md: 'h-10 w-10 text-sm',
-      lg: 'h-12 w-12 text-base',
-      xl: 'h-16 w-16 text-lg',
-    };
+const DEFAULT_AVATAR: AvatarAttributes = {
+  skinId: 1,
+  eyebrowId: 1,
+  eyesId: 1,
+  facialHairId: 1,
+  hairId: 1,
+  mouthId: 1,
+};
+
+const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
+  ({ 
+    className, 
+    emoji,
+    size = 100,
+    ...props 
+  }, ref) => {
+    const currentEmoji = emoji || DEFAULT_AVATAR;
+
+    const currentSkin = getAvatarPartImage(currentEmoji.skinId, 'skin');
+    const currentEyes = getAvatarPartImage(currentEmoji.eyesId, 'eyes');
+    const currentMouth = getAvatarPartImage(currentEmoji.mouthId, 'mouth');
+    const currentEyebrow = getAvatarPartImage(currentEmoji.eyebrowId, 'eyebrow');
+    const currentHair = getAvatarPartImage(currentEmoji.hairId, 'hair');
+    const currentFacialHair = getAvatarPartImage(currentEmoji.facialHairId, 'facialHair');
 
     return (
       <div
         ref={ref}
-        className={cn(
-          'relative flex shrink-0 overflow-hidden rounded-full',
-          sizeClasses[size],
-          className
-        )}
+        className={cn('avatar-container', className)}
+        style={{
+          width: `${size}px`,
+          height: `${size}px`,
+        }}
         {...props}
       >
-        {src && !imageFailed ? (
+        {/* Base/Skin */}
+        {currentSkin && (
           <img
-            src={src}
-            alt={alt || 'Avatar'}
-            className="aspect-square h-full w-full object-cover"
-            onError={() => setImageFailed(true)}
+            src={currentSkin}
+            alt="Base"
+            className="avatar-layer"
           />
-        ) : (
-          <div className="flex h-full w-full items-center justify-center bg-muted">
-            <span className="font-medium text-muted-foreground">
-              {fallback || alt?.charAt(0)?.toUpperCase() || '?'}
-            </span>
-          </div>
+        )}
+
+        {/* Eyes */}
+        {currentEyes && (
+          <img
+            src={currentEyes}
+            alt="Eyes"
+            className="avatar-layer"
+          />
+        )}
+
+        {/* Eyebrows */}
+        {currentEyebrow && (
+          <img
+            src={currentEyebrow}
+            alt="Eyebrows"
+            className="avatar-layer"
+          />
+        )}
+
+        {/* Mouth */}
+        {currentMouth && (
+          <img
+            src={currentMouth}
+            alt="Mouth"
+            className="avatar-layer"
+          />
+        )}
+
+        {/* Hair */}
+        {currentHair && (
+          <img
+            src={currentHair}
+            alt="Hair"
+            className="avatar-layer"
+          />
+        )}
+
+        {/* Facial Hair */}
+        {currentFacialHair && (
+          <img
+            src={currentFacialHair}
+            alt="Facial Hair"
+            className="avatar-layer"
+          />
         )}
       </div>
     );
