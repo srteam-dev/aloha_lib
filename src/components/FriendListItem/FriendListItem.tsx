@@ -1,16 +1,17 @@
-﻿import React from 'react';
+import React from 'react';
 import './FriendListItem.css';
 import { cn } from '../../lib/utils';
-import { Avatar } from '../Avatar';
+import { Avatar, type AvatarAttributes } from '../Avatar';
 import { colors, type ColorName } from '../../colors';
 
 // ── Tipos ────────────────────────────────────────────────────────
 
 export type FriendItemVariant = 'user' | 'group';
 
+
+
 export interface FriendAvatar {
-    src?: string;
-    fallback?: string;
+    emoji?: AvatarAttributes;
 }
 
 export interface FriendListItemProps extends React.HTMLAttributes<HTMLButtonElement> {
@@ -24,8 +25,7 @@ export interface FriendListItemProps extends React.HTMLAttributes<HTMLButtonElem
     name?: string;
 
     // ── Variante user ─────────────────────────────────────────────
-    avatarSrc?: string;
-    avatarFallback?: string;
+    emoji?: AvatarAttributes;
 
     // ── Variante group ────────────────────────────────────────────
     /** Array de avatares para el stack (variant='group') */
@@ -37,6 +37,9 @@ export interface FriendListItemProps extends React.HTMLAttributes<HTMLButtonElem
     chevronColor?: ColorName;
     /** Color del borde/ring de cada avatar en el stack */
     avatarRingColor?: ColorName;
+    // ── Opciones de UI ────────────────────────────────────────────
+    showChevron?: boolean;
+    isSelected?: boolean;
 }
 
 // ── Componente ────────────────────────────────────────────────────
@@ -46,9 +49,10 @@ const FriendListItem = React.forwardRef<HTMLButtonElement, FriendListItemProps>(
         {
             variant = 'user',
             name,
-            avatarSrc,
-            avatarFallback,
+            emoji,
             avatars = [],
+            showChevron = true,
+            isSelected = false,
             bgColor,
             nameColor,
             chevronColor,
@@ -65,18 +69,25 @@ const FriendListItem = React.forwardRef<HTMLButtonElement, FriendListItemProps>(
             name: colors[nameColor ?? 'olivo'],
             chevron: colors[chevronColor ?? 'olivo'],
             ring: colors[avatarRingColor ?? 'hueso'],
+            selectedBorder: colors['piedra'],
         };
 
         return (
             <button
                 ref={ref}
                 type="button"
-                className={cn('friend-list-item', `friend-list-item--${variant}`, className)}
+                className={cn(
+                    'friend-list-item', 
+                    `friend-list-item--${variant}`, 
+                    isSelected && 'friend-list-item--selected',
+                    className
+                )}
                 style={{
                     '--fi-bg': resolved.bg,
                     '--fi-name': resolved.name,
                     '--fi-chevron': resolved.chevron,
                     '--fi-ring': resolved.ring,
+                    '--fi-selected-border': resolved.selectedBorder,
                     ...style,
                 } as React.CSSProperties}
                 onClick={onClick}
@@ -87,9 +98,8 @@ const FriendListItem = React.forwardRef<HTMLButtonElement, FriendListItemProps>(
                     {variant === 'user' ? (
                         <>
                             <Avatar
-                                src={avatarSrc}
-                                fallback={avatarFallback ?? name?.charAt(0).toUpperCase()}
-                                size="md"
+                                emoji={emoji as AvatarAttributes}
+                                size={40}
                                 className="friend-list-item__avatar"
                             />
                             <span className="friend-list-item__name">{name}</span>
@@ -101,9 +111,8 @@ const FriendListItem = React.forwardRef<HTMLButtonElement, FriendListItemProps>(
                                 {avatars.slice(0, 4).map((av, i) => (
                                     <Avatar
                                         key={i}
-                                        src={av.src}
-                                        fallback={av.fallback}
-                                        size="md"
+                                        emoji={av.emoji as AvatarAttributes}
+                                        size={40}
                                         className="friend-list-item__stack-avatar"
                                         style={{ zIndex: avatars.length - i }}
                                     />
@@ -118,20 +127,22 @@ const FriendListItem = React.forwardRef<HTMLButtonElement, FriendListItemProps>(
                 </span>
 
                 {/* ── Chevron derecho ────────────────────────────── */}
-                <svg
-                    className="friend-list-item__chevron"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden
-                >
-                    <polyline points="9 18 15 12 9 6" />
-                </svg>
+                {showChevron && (
+                    <svg
+                        className="friend-list-item__chevron"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden
+                    >
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                )}
             </button>
         );
     }

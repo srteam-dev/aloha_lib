@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { cn } from '../../lib/utils';
 import { getAvatarPartImage } from './avatarParts';
 import './Avatar.css';
@@ -31,6 +31,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     className, 
     emoji,
     size = 100,
+    style,
     ...props 
   }, ref) => {
     const currentEmoji = emoji || DEFAULT_AVATAR;
@@ -49,6 +50,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
         style={{
           width: `${size}px`,
           height: `${size}px`,
+          ...style
         }}
         {...props}
       >

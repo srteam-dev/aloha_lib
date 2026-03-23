@@ -1,16 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { FriendListItem } from './FriendListItem';
+import { type AvatarAttributes } from '../Avatar';
 
 const COLOR_OPTIONS = [
     'olivo', 'lima', 'bosque', 'hueso', 'piedra', 'corteza',
     'girasol', 'coral', 'aqua', 'lavanda', 'electrico', 'marmol', 'ice', 'koala',
 ];
 
+const DEFAULT_EMOJI: AvatarAttributes = {
+    skinId: 1, eyebrowId: 1, eyesId: 1, facialHairId: 1, hairId: 1, mouthId: 1,
+};
+
 const SAMPLE_AVATARS = [
-    { src: 'https://i.pravatar.cc/150?img=12' },
-    { src: 'https://i.pravatar.cc/150?img=7' },
-    { src: 'https://i.pravatar.cc/150?img=32' },
-    { src: 'https://i.pravatar.cc/150?img=45' },
+    { emoji: { ...DEFAULT_EMOJI, skinId: 1, hairId: 2 } },
+    { emoji: { ...DEFAULT_EMOJI, skinId: 2, hairId: 3 } },
+    { emoji: { ...DEFAULT_EMOJI, skinId: 3, hairId: 4 } },
+    { emoji: { ...DEFAULT_EMOJI, skinId: 4, hairId: 5 } },
 ];
 
 const meta = {
@@ -31,11 +36,10 @@ const meta = {
     argTypes: {
         variant: { control: 'radio', options: ['user', 'group'] },
         name: { control: 'text' },
-        count: { control: 'number' },
-        countLabel: { control: 'text' },
+        showChevron: { control: 'boolean' },
+        isSelected: { control: 'boolean' },
         bgColor: { control: 'select', options: COLOR_OPTIONS },
         nameColor: { control: 'select', options: COLOR_OPTIONS },
-        countColor: { control: 'select', options: COLOR_OPTIONS },
         chevronColor: { control: 'select', options: COLOR_OPTIONS },
         avatarRingColor: { control: 'select', options: COLOR_OPTIONS },
     },
@@ -50,7 +54,7 @@ export const User: Story = {
     args: {
         variant: 'user',
         name: 'Alejandro García',
-        avatarSrc: 'https://i.pravatar.cc/150?img=12',
+        emoji: { ...DEFAULT_EMOJI, skinId: 2, hairId: 3 },
         onClick: () => alert('Clic en usuario'),
     },
 };
@@ -61,7 +65,6 @@ export const Group: Story = {
     args: {
         variant: 'group',
         avatars: SAMPLE_AVATARS,
-        count: 48,
         name: 'Amigos del Cole',
         onClick: () => alert('Clic en grupo'),
     },
@@ -73,7 +76,7 @@ export const UserFallback: Story = {
     args: {
         variant: 'user',
         name: 'Valentina Pérez',
-        avatarFallback: 'V',
+        emoji: undefined,
     },
 };
 
@@ -83,7 +86,7 @@ export const CustomColors: Story = {
     args: {
         variant: 'user',
         name: 'María López',
-        avatarSrc: 'https://i.pravatar.cc/150?img=45',
+        emoji: { ...DEFAULT_EMOJI, skinId: 4, hairId: 5 },
         bgColor: 'lavanda',
         nameColor: 'hueso',
         chevronColor: 'hueso',
@@ -102,26 +105,25 @@ export const FullList: Story = {
             <FriendListItem
                 variant="group"
                 avatars={SAMPLE_AVATARS}
-                count={48}
                 name="Amigos del Cole"
                 onClick={() => alert('Grupo')}
             />
             <FriendListItem
                 variant="user"
                 name="Alejandro García"
-                avatarSrc="https://i.pravatar.cc/150?img=12"
+                emoji={{ ...DEFAULT_EMOJI, skinId: 2, hairId: 3 }}
                 onClick={() => alert('Alejandro')}
             />
             <FriendListItem
                 variant="user"
                 name="Valentina Pérez"
-                avatarSrc="https://i.pravatar.cc/150?img=45"
+                emoji={{ ...DEFAULT_EMOJI, skinId: 4, hairId: 5 }}
                 onClick={() => alert('Valentina')}
             />
             <FriendListItem
                 variant="user"
                 name="Carlos Mínguez"
-                avatarFallback="C"
+                emoji={undefined}
                 onClick={() => alert('Carlos')}
             />
         </div>
