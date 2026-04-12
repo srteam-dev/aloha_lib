@@ -1,7 +1,8 @@
 ﻿import React from 'react';
 import './QuestionCard.css';
 import { cn } from '../../lib/utils';
-import { Avatar } from '../Avatar';
+import { Avatar, type AvatarAttributes } from '../Avatar';
+import { Emoji, type EmojiName } from '../Emoji';
 import { colors, type ColorName } from '../../colors';
 
 // ── Tipos ────────────────────────────────────────────────────────
@@ -11,8 +12,8 @@ export type QuestionCardState = 'pending' | 'responded' | 'closed' | 'revealed';
 export interface QuestionRespondent {
     /** Nombre del participante */
     name: string;
-    avatarSrc?: string;
-    avatarFallback?: string;
+    /** Emoji del avatar del participante */
+    emoji: AvatarAttributes;
     /** Respuesta del participante (se muestra en estado 'revealed') */
     answer?: string;
 }
@@ -22,9 +23,8 @@ export interface QuestionCardProps extends React.HTMLAttributes<HTMLDivElement> 
     questionLabel: string;
     /** Texto completo de la pregunta, visible en estado 'revealed' */
     questionText?: string;
-    /** Avatar del creador de la pregunta (mostrado en el badge) */
-    labelAvatarSrc?: string;
-    labelAvatarFallback?: string;
+    /** Emoji del badge (ej: "happy", "crazy") */
+    labelEmoji?: EmojiName;
     /**
      * Estado del componente:
      * - 'pending'   → badge + botón Responder
@@ -51,7 +51,7 @@ export interface QuestionCardProps extends React.HTMLAttributes<HTMLDivElement> 
     buttonBgColor?: ColorName;
     /** Color del texto del botón Responder */
     buttonTextColor?: ColorName;
-    /** Color del texto de los respondents ("Ale ya ha respondido.") */
+    /** Color del texto de los respondents ("Ana ya ha respondido.") */
     respondedTextColor?: ColorName;
     /** Color del texto de la pregunta (estado revealed) */
     questionTextColor?: ColorName;
@@ -95,8 +95,7 @@ const QuestionCard = React.forwardRef<HTMLDivElement, QuestionCardProps>(
         {
             questionLabel,
             questionText,
-            labelAvatarSrc,
-            labelAvatarFallback = '?',
+            labelEmoji,
             state = 'pending',
             respondents = [],
             respondButtonLabel = 'Responder',
@@ -152,12 +151,7 @@ const QuestionCard = React.forwardRef<HTMLDivElement, QuestionCardProps>(
             >
                 {/* ── Badge de la pregunta ─────────────────────────── */}
                 <div className="question-card__label">
-                    <Avatar
-                        src={labelAvatarSrc}
-                        fallback={labelAvatarFallback}
-                        size="sm"
-                        className="question-card__label-avatar"
-                    />
+                    {labelEmoji && <Emoji name={labelEmoji} size="sm" className="question-card__label-emoji" />}
                     <span className="question-card__label-text">{questionLabel}</span>
                 </div>
 
@@ -171,9 +165,8 @@ const QuestionCard = React.forwardRef<HTMLDivElement, QuestionCardProps>(
                             {respondents.map((r, i) => (
                                 <li key={i} className="question-card__answer-row">
                                     <Avatar
-                                        src={r.avatarSrc}
-                                        fallback={r.avatarFallback ?? r.name.charAt(0).toUpperCase()}
-                                        size="sm"
+                                        emoji={r.emoji}
+                                        size={40}
                                         className="question-card__answer-avatar"
                                     />
                                     <span className="question-card__answer-name">{r.name}</span>
@@ -192,9 +185,8 @@ const QuestionCard = React.forwardRef<HTMLDivElement, QuestionCardProps>(
                         {respondents.map((r, i) => (
                             <li key={i} className="question-card__respondent">
                                 <Avatar
-                                    src={r.avatarSrc}
-                                    fallback={r.avatarFallback ?? r.name.charAt(0).toUpperCase()}
-                                    size="sm"
+                                    emoji={r.emoji}
+                                    size={60}
                                     className="question-card__respondent-avatar"
                                 />
                                 <span className="question-card__respondent-text">

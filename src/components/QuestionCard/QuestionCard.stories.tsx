@@ -1,10 +1,32 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { QuestionCard } from './QuestionCard';
+import { emojiMap, type EmojiName } from '../Emoji';
+import type { AvatarAttributes } from '../Avatar';
 
 const COLOR_OPTIONS = [
     'olivo', 'lima', 'bosque', 'hueso', 'piedra', 'corteza',
     'girasol', 'coral', 'aqua', 'lavanda', 'electrico', 'marmol', 'ice', 'koala',
 ];
+
+const EMOJI_OPTIONS: EmojiName[] = Object.keys(emojiMap) as EmojiName[];
+
+const emojiAle: AvatarAttributes = {
+    skinId: 1,
+    eyebrowId: 1,
+    eyesId: 1,
+    facialHairId: 1,
+    hairId: 1,
+    mouthId: 1,
+};
+
+const emojiTu: AvatarAttributes = {
+    skinId: 2,
+    eyebrowId: 2,
+    eyesId: 2,
+    facialHairId: 1,
+    hairId: 2,
+    mouthId: 2,
+};
 
 const meta = {
     title: 'Components/QuestionCard',
@@ -29,6 +51,11 @@ const meta = {
         },
         questionLabel: { control: 'text' },
         questionText: { control: 'text' },
+        labelEmoji: { 
+            control: 'select',
+            options: EMOJI_OPTIONS,
+            description: 'Emoji del badge',
+        },
         respondButtonLabel: { control: 'text' },
         bgColor: { control: 'select', options: COLOR_OPTIONS },
         labelBgColor: { control: 'select', options: COLOR_OPTIONS },
@@ -47,8 +74,8 @@ type Story = StoryObj<typeof meta>;
 
 // ── Base respondents shared across stories ──────────────────────
 const sampleRespondents = [
-    { name: 'Ale', avatarSrc: 'https://i.pravatar.cc/150?img=12', answer: 'Huevo' },
-    { name: 'Tú', avatarSrc: 'https://i.pravatar.cc/150?img=7', answer: 'Gallina' },
+    { name: 'Ale', emoji: emojiAle, answer: 'Huevo' },
+    { name: 'Tú', emoji: emojiTu, answer: 'Gallina' },
 ];
 
 // ── Estado 1: Pending ───────────────────────────────────────────
@@ -57,7 +84,7 @@ export const Pending: Story = {
     args: {
         state: 'pending',
         questionLabel: 'Romper el hielo',
-        labelAvatarSrc: 'https://i.pravatar.cc/150?img=5',
+        labelEmoji: 'happy',
         respondButtonLabel: 'Responder',
     },
 };
@@ -68,7 +95,7 @@ export const Responded: Story = {
     args: {
         state: 'responded',
         questionLabel: 'Romper el hielo',
-        labelAvatarSrc: 'https://i.pravatar.cc/150?img=5',
+        labelEmoji: 'happy',
         respondButtonLabel: 'Responder',
         respondents: sampleRespondents,
     },
@@ -80,7 +107,7 @@ export const Closed: Story = {
     args: {
         state: 'closed',
         questionLabel: 'Romper el hielo',
-        labelAvatarSrc: 'https://i.pravatar.cc/150?img=5',
+        labelEmoji: 'happy',
         respondents: sampleRespondents,
     },
 };
@@ -92,7 +119,7 @@ export const Revealed: Story = {
         state: 'revealed',
         questionLabel: 'Romper el hielo',
         questionText: '¿Que fue antes el huevo o la gallina?',
-        labelAvatarSrc: 'https://i.pravatar.cc/150?img=5',
+        labelEmoji: 'happy',
         respondents: sampleRespondents,
     },
 };
@@ -111,7 +138,7 @@ export const AllStates: Story = {
                 <QuestionCard
                     state="pending"
                     questionLabel="Romper el hielo"
-                    labelAvatarSrc="https://i.pravatar.cc/150?img=5"
+                    labelEmoji="happy"
                     respondButtonLabel="Responder"
                 />
             </div>
@@ -120,7 +147,7 @@ export const AllStates: Story = {
                 <QuestionCard
                     state="responded"
                     questionLabel="Romper el hielo"
-                    labelAvatarSrc="https://i.pravatar.cc/150?img=5"
+                    labelEmoji="happy"
                     respondButtonLabel="Responder"
                     respondents={sampleRespondents}
                 />
@@ -130,7 +157,7 @@ export const AllStates: Story = {
                 <QuestionCard
                     state="closed"
                     questionLabel="Romper el hielo"
-                    labelAvatarSrc="https://i.pravatar.cc/150?img=5"
+                    labelEmoji="happy"
                     respondents={sampleRespondents}
                 />
             </div>
@@ -140,7 +167,7 @@ export const AllStates: Story = {
                     state="revealed"
                     questionLabel="Romper el hielo"
                     questionText="¿Que fue antes el huevo o la gallina?"
-                    labelAvatarSrc="https://i.pravatar.cc/150?img=5"
+                    labelEmoji="happy"
                     respondents={sampleRespondents}
                 />
             </div>

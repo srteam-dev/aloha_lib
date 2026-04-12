@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import './ChatMessage.css';
 import { cn } from '../../lib/utils';
-import { Avatar } from '../Avatar';
+import { Avatar, type AvatarAttributes } from '../Avatar';
 import { colors, type ColorName } from '../../colors';
 
 export type ChatMessageVariant = 'sent' | 'received';
@@ -13,10 +13,8 @@ export interface ChatMessageProps extends React.HTMLAttributes<HTMLDivElement> {
     name: string;
     /** Hora del mensaje, ej: "16:34" */
     time: string;
-    /** URL del avatar del usuario (se muestra dentro de la burbuja) */
-    avatarSrc?: string;
-    /** Fallback del avatar si no hay imagen (iniciales) */
-    avatarFallback?: string;
+    /** Emoji del avatar del usuario */
+    emoji: AvatarAttributes;
     /**
      * 'received' = izquierda, verde lima  |  'sent' = derecha, verde bosque
      * @default 'received'
@@ -36,8 +34,7 @@ const ChatMessage = React.forwardRef<HTMLDivElement, ChatMessageProps>(
             message,
             name,
             time,
-            avatarSrc,
-            avatarFallback,
+            emoji,
             variant = 'received',
             bgColor,
             messageColor,
@@ -77,14 +74,14 @@ const ChatMessage = React.forwardRef<HTMLDivElement, ChatMessageProps>(
             >
                 {/* Header: avatar + nombre + separador + hora */}
                 <div className="chat-message__header">
-                    <Avatar
-                        src={avatarSrc}
-                        alt={name}
-                        fallback={avatarFallback || name.charAt(0).toUpperCase()}
-                        size="sm"
-                        className="chat-message__avatar"
-                    />
-                    <span className="chat-message__name">{name}</span>
+                    <div className="chat-message__avatar-name">
+                        <Avatar
+                            emoji={emoji}
+                            size={22}
+                            className="chat-message__avatar"
+                        />
+                        <span className="chat-message__name">{name}</span>
+                    </div>
                     <span className="chat-message__separator">-</span>
                     <span className="chat-message__time">{time}</span>
                 </div>

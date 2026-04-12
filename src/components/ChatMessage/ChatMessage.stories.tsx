@@ -1,10 +1,38 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ChatMessage } from './ChatMessage';
+import type { AvatarAttributes } from '../Avatar';
 
 const COLOR_OPTIONS = [
     'olivo', 'lima', 'bosque', 'hueso', 'piedra', 'corteza',
     'girasol', 'coral', 'aqua', 'lavanda', 'electrico', 'marmol', 'ice', 'koala',
 ];
+
+const avatarAle: AvatarAttributes = {
+    eyebrowId: 1,
+    eyesId: 1,
+    facialHairId: 1,
+    hairId: 1,
+    mouthId: 1,
+    skinId: 1,
+};
+
+const avatarTu: AvatarAttributes = {
+    eyebrowId: 2,
+    eyesId: 3,
+    facialHairId: 1,
+    hairId: 2,
+    mouthId: 2,
+    skinId: 2,
+};
+
+const avatarCarlos: AvatarAttributes = {
+    eyebrowId: 3,
+    eyesId: 2,
+    facialHairId: 2,
+    hairId: 3,
+    mouthId: 3,
+    skinId: 3,
+};
 
 const meta = {
     title: 'Components/ChatMessage',
@@ -31,8 +59,6 @@ const meta = {
         name: { control: 'text' },
         time: { control: 'text' },
         message: { control: 'text' },
-        avatarSrc: { control: 'text' },
-        avatarFallback: { control: 'text' },
         bgColor: {
             control: 'select',
             options: COLOR_OPTIONS,
@@ -61,7 +87,7 @@ export const Received: Story = {
         name: 'Ale',
         time: '16:34',
         message: 'Perdon estaba comiendo',
-        avatarSrc: 'https://i.pravatar.cc/150?img=12',
+        emoji: avatarAle,
     },
 };
 
@@ -72,7 +98,7 @@ export const Sent: Story = {
         name: 'Tú',
         time: '15:51',
         message: 'No te hagas el interesante y dilooooo',
-        avatarSrc: 'https://i.pravatar.cc/150?img=7',
+        emoji: avatarTu,
     },
 };
 
@@ -84,21 +110,21 @@ export const CustomColors: Story = {
         name: 'Ale',
         time: '16:34',
         message: 'Puedes cambiar todos mis colores en los controles ↗',
-        avatarSrc: 'https://i.pravatar.cc/150?img=12',
+        emoji: avatarAle,
         bgColor: 'lavanda',
         messageColor: 'olivo',
         headerColor: 'piedra',
     },
 };
 
-// ── Sin avatar (fallback inicial) ─────────────────────────────
-export const NoAvatar: Story = {
+// ── Avatar de Carlos ─────────────────────────────
+export const WithAvatar: Story = {
     args: {
         variant: 'received',
         name: 'Carlos',
         time: '10:05',
         message: '¿Quedamos a las 7?',
-        avatarFallback: 'C',
+        emoji: avatarCarlos,
     },
 };
 
@@ -111,6 +137,7 @@ export const Conversation: Story = {
         name: 'Ale',
         time: '15:50',
         message: 'No te hagas el interesante y dilooooo',
+        emoji: avatarAle,
     },
     render: () => (
         <div className="chat-thread">
@@ -119,42 +146,42 @@ export const Conversation: Story = {
                 name="Ale"
                 time="15:50"
                 message="No te hagas el interesante y dilooooo"
-                avatarSrc="https://i.pravatar.cc/150?img=12"
+                emoji={avatarAle}
             />
             <ChatMessage
                 variant="sent"
                 name="Tú"
                 time="15:51"
                 message="¿El qué? 😇"
-                avatarSrc="https://i.pravatar.cc/150?img=7"
+                emoji={avatarTu}
             />
             <ChatMessage
                 variant="received"
                 name="Ale"
                 time="16:34"
                 message="Perdon estaba comiendo"
-                avatarSrc="https://i.pravatar.cc/150?img=12"
+                emoji={avatarAle}
             />
             <ChatMessage
                 variant="sent"
                 name="Tú"
                 time="16:35"
                 message="Jaja no te preocupes 😄"
-                avatarSrc="https://i.pravatar.cc/150?img=7"
+                emoji={avatarTu}
             />
             <ChatMessage
                 variant="received"
                 name="Ale"
                 time="16:36"
                 message="Oye y para el finde quedan planes 🤙"
-                avatarSrc="https://i.pravatar.cc/150?img=12"
+                emoji={avatarAle}
             />
             <ChatMessage
                 variant="sent"
                 name="Tú"
                 time="16:38"
                 message="Sí! Te aviso esta tarde 👌"
-                avatarSrc="https://i.pravatar.cc/150?img=7"
+                emoji={avatarTu}
             />
         </div>
     ),

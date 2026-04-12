@@ -13,8 +13,11 @@ export interface AvatarAttributes {
 }
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
-  emoji: AvatarAttributes;
+  emoji?: AvatarAttributes;
   size?: number;
+  src?: string;
+  alt?: string;
+  fallback?: string;
 }
 
 const DEFAULT_AVATAR: AvatarAttributes = {
@@ -32,8 +35,52 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     emoji,
     size = 100,
     style,
+    src,
+    alt = 'Avatar',
+    fallback,
     ...props 
   }, ref) => {
+    // Si tiene src, mostrar como imagen directa
+    if (src) {
+      return (
+        <div
+          ref={ref}
+          className={cn('avatar-container', className)}
+          style={{
+            width: `${size}px`,
+            height: `${size}px`,
+            ...style
+          }}
+          {...props}
+        >
+          <img
+            src={src}
+            alt={alt}
+            className="avatar-image"
+          />
+        </div>
+      );
+    }
+
+    // Si tiene fallback sin emoji, mostrar como texto
+    if (fallback && !emoji) {
+      return (
+        <div
+          ref={ref}
+          className={cn('avatar-container avatar-fallback', className)}
+          style={{
+            width: `${size}px`,
+            height: `${size}px`,
+            ...style
+          }}
+          {...props}
+        >
+          {fallback}
+        </div>
+      );
+    }
+
+    // Si no, usar emoji composable
     const currentEmoji = emoji || DEFAULT_AVATAR;
 
     const currentSkin = getAvatarPartImage(currentEmoji.skinId, 'skin');
