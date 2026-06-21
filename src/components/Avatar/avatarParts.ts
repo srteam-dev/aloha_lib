@@ -3,9 +3,19 @@
  * Contains all available avatar customization layers
  */
 
+export type AvatarPartType = 'skin' | 'eyes' | 'eyebrow' | 'facialHair' | 'hair' | 'mouth';
+
+// Type unions for valid IDs by part type
+export type SkinId = 1 | 2 | 3 | 4 | 5 | 6;
+export type EyesId = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+export type EyebrowId = 1 | 2 | 3 | 4 | 5;
+export type FacialHairId = 1;
+export type HairId = 1 | 2 | 3;
+export type MouthId = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
 export interface AvatarPart {
   id: number;
-  type: 'skin' | 'eyes' | 'eyebrow' | 'facialHair' | 'hair' | 'mouth';
+  type: AvatarPartType;
   color?: string;
   image: string;
 }

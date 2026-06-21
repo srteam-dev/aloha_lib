@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { cn } from '../../lib/utils';
-import { P, FontFamily, FontWeight, ColorOption } from '../Typography';
+import { FontFamily, FontWeight, ColorOption } from '../Typography';
+import { colors } from '../../colors';
 
 export interface SwitchProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
@@ -10,15 +11,42 @@ export interface SwitchProps
   labelColor?: ColorOption;
 }
 
+const fontFamilyClasses: Record<FontFamily, string> = {
+  jetbrains: 'font-jetbrains',
+  nunito: 'font-nunito',
+  default: '',
+};
+
+const fontWeightClasses: Record<FontWeight, string> = {
+  light: 'font-light',
+  medium: 'font-medium',
+  bold: 'font-bold',
+  black: 'font-black',
+};
+
+const getColorStyle = (color?: ColorOption): React.CSSProperties => {
+  if (!color || color === 'default') return {};
+
+  if (color.startsWith('theme-')) {
+    return { color: `var(--${color})` };
+  }
+
+  if (color in colors) {
+    return { color: colors[color as keyof typeof colors] };
+  }
+
+  return {};
+};
+
 const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
-  ({ className, label, font, weight, labelColor, id, ...props }, ref) => {
+  ({ className, label, font = 'default', weight, labelColor, id, ...props }, ref) => {
     const switchId = id || `switch-${Math.random().toString(36).substr(2, 9)}`;
 
     return (
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center gap-3">
         <label
           htmlFor={switchId}
-          className="relative inline-flex cursor-pointer items-center"
+          className="relative inline-flex cursor-pointer items-center flex-shrink-0"
         >
           <input
             type="checkbox"
@@ -35,14 +63,16 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           />
         </label>
         {label && (
-          <P
-            font={font}
-            weight={weight}
-            color={labelColor}
-            className="leading-none m-0 flex items-center"
+          <span
+            className={cn(
+              'text-sm',
+              fontFamilyClasses[font],
+              weight && fontWeightClasses[weight]
+            )}
+            style={getColorStyle(labelColor)}
           >
             {label}
-          </P>
+          </span>
         )}
       </div>
     );

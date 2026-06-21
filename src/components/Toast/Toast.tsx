@@ -4,13 +4,16 @@ import { AlertCircle, CheckCircle, Info, X } from 'lucide-react';
 import { colors } from '../../colors';
 import { P } from '../Typography';
 
+export type ToastType = 'error' | 'success' | 'info';
+export type ToastPosition = 'bottom-center' | 'bottom-right' | 'bottom-left' | 'top-center' | 'top-right' | 'top-left';
+
 export interface ToastProps {
     message: string;
-    type?: 'error' | 'success' | 'info';
+    type?: ToastType;
     onClose: () => void;
     duration?: number;
     className?: string;
-    position?: 'bottom-center' | 'bottom-right' | 'bottom-left' | 'top-center' | 'top-right' | 'top-left';
+    position?: ToastPosition;
 }
 
 const Toast = React.forwardRef<HTMLDivElement, ToastProps>(

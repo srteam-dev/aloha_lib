@@ -3,15 +3,22 @@ import { AlertCircle, RefreshCw } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { Button } from '../Button';
 
+export type ErrorVariant = 'inline' | 'card';
+
 export interface ErrorProps {
   title?: string;
   message?: string;
   onRetry?: () => void;
   retryText?: string;
   className?: string;
-  variant?: 'inline' | 'card';
+  variant?: ErrorVariant;
   showIcon?: boolean;
 }
+
+const variantClasses: Record<ErrorVariant, string> = {
+  inline: 'inline-flex flex-col items-center',
+  card: 'border border-red-200 bg-red-50 rounded-lg p-6',
+};
 
 export const Error: React.FC<ErrorProps> = ({
   title = 'Error',
@@ -22,10 +29,6 @@ export const Error: React.FC<ErrorProps> = ({
   variant = 'inline',
   showIcon = true,
 }) => {
-  const variantClasses = {
-    inline: 'inline-flex flex-col items-center',
-    card: 'border border-red-200 bg-red-50 rounded-lg p-6',
-  };
 
   return (
     <div className={cn(variantClasses[variant], className)}>

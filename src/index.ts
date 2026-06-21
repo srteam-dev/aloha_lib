@@ -1,7 +1,8 @@
 // Main exports
 export { Button, buttonVariants, type ButtonProps } from './components/Button';
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from './components/Card';
-export { Avatar, type AvatarProps } from './components/Avatar';
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, type CardProps, type CardSize, type BorderRadius, type SpacingSize, type TitleComponent } from './components/Card';
+export { Avatar, type AvatarProps, type AvatarAttributes, type AvatarAttributesInput } from './components/Avatar';
+export type { SkinId, EyesId, EyebrowId, FacialHairId, HairId, MouthId, AvatarPartType } from './components/Avatar';
 export { Badge, badgeVariants, type BadgeProps } from './components/Badge';
 export { Input, type InputProps } from './components/Input';
 export { Select, type SelectProps, type SelectOption } from './components/Select';
@@ -12,11 +13,11 @@ export { Notification, type NotificationProps } from './components/Notification'
 export { TextDivider, type TextDividerProps, type TypographyComponent } from './components/TextDivider';
 export { Link, type LinkProps } from './components/Link';
 export { Image, type ImageProps } from './components/Image';
-export { Popup, type PopupProps } from './components/Popup';
-export { Error, type ErrorProps } from './components/Error';
+export { Popup, type PopupProps, type PopupSize } from './components/Popup';
+export { Error, type ErrorProps, type ErrorVariant } from './components/Error';
 export { FormError, type FormErrorProps } from './components/FormError';
-export { Toast, type ToastProps } from './components/Toast';
-export { Loading, type LoadingProps } from './components/Loading';
+export { Toast, type ToastProps, type ToastType, type ToastPosition } from './components/Toast';
+export { Loading, type LoadingProps, type LoadingSize } from './components/Loading';
 export { Logo, type LogoProps, type LogoVariant, type LogoSize } from './components/Logo';
 export { Icon, type IconProps, type IconName, type IconSize } from './components/Icon';
 export { Streak, type StreakProps, type StreakSize } from './components/Streak';
@@ -25,7 +26,7 @@ export { QuestionCard, type QuestionCardProps, type QuestionCardState, type Ques
 export { FriendListItem, type FriendListItemProps, type FriendItemVariant, type FriendAvatar } from './components/FriendListItem';
 export { Emoji, type EmojiProps, type EmojiName, type EmojiSize } from './components/Emoji';
 export { Pattern, type PatternProps, type PatternName, type PatternSize } from './components/Pattern';
-export { PatternGroup, type PatternGroupProps, type PatternGroupItem } from './components/PatternGroup';
+export { PatternGroup, type PatternGroupProps, type PatternGroupItem, type PatternLayoutDirection, type PatternGroupRounded } from './components/PatternGroup';
 export { PatternFill, type PatternFillProps } from './components/PatternFill';
 export { Navbar, type NavbarProps, type NavbarVariant, type NavItem } from './components/Navbar';
 
@@ -35,7 +36,7 @@ export { H1, H2, H3, H4, P, Subtitle, Lead, Small, Muted, type HeadingProps, typ
 // Layout
 export { Grid, GridItem, type GridProps, type GridItemProps } from './components/Grid';
 export { FullPage, type FullPageProps } from './components/FullPage';
-export { LoadingFullScreen, type LoadingFullScreenProps } from './components/LoadingFullScreen';
+export { LoadingFullScreen, type LoadingFullScreenProps, type LoadingFullScreenSpinnerSize, type LoadingFullScreenBackground } from './components/LoadingFullScreen';
 export { ErrorFullScreen, type ErrorFullScreenProps } from './components/ErrorFullScreen';
 
 // Utilities
@@ -43,7 +44,7 @@ export { cn } from './lib/utils';
 
 // Colors
 export { colors, cssVars, themeVars, getColor, getCssVar, colorEntries, type ColorName, type ColorValue, type ThemeName } from './colors';
-export { ColorPalette, ColorSwatch, type ColorPaletteProps, type ColorSwatchProps } from './components/ColorPalette';
+export { ColorPalette, ColorSwatch, type ColorPaletteProps, type ColorSwatchProps, type ColorSwatchSize, type ColorPaletteSize, type GridColumns } from './components/ColorPalette';
 
 // Styles
 import './styles/globals.css';

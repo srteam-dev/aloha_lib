@@ -2,10 +2,12 @@
 import { colors, ColorName, colorEntries } from '../../colors';
 import { cn } from '../../lib/utils';
 
+export type ColorSwatchSize = 'sm' | 'md' | 'lg';
+
 export interface ColorSwatchProps {
   name: ColorName;
   value: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: ColorSwatchSize;
   showHex?: boolean;
   className?: string;
 }
@@ -43,10 +45,13 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
   );
 };
 
+export type ColorPaletteSize = 'sm' | 'md' | 'lg';
+export type GridColumns = 2 | 3 | 4 | 5 | 6;
+
 export interface ColorPaletteProps {
-  size?: 'sm' | 'md' | 'lg';
+  size?: ColorPaletteSize;
   showHex?: boolean;
-  columns?: 2 | 3 | 4 | 5 | 6;
+  columns?: GridColumns;
   className?: string;
 }
 

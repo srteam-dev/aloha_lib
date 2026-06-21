@@ -1,19 +1,31 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
-import { getAvatarPartImage } from './avatarParts';
+import { getAvatarPartImage, type SkinId, type EyesId, type EyebrowId, type FacialHairId, type HairId, type MouthId } from './avatarParts';
 import './Avatar.css';
 
 export interface AvatarAttributes {
-  skinId?: number;
-  eyebrowId?: number;
-  eyesId?: number;
-  facialHairId?: number;
-  hairId?: number;
-  mouthId?: number;
+  skinId?: SkinId;
+  eyebrowId?: EyebrowId;
+  eyesId?: EyesId;
+  facialHairId?: FacialHairId;
+  hairId?: HairId;
+  mouthId?: MouthId;
 }
 
+/**
+ * Flexible avatar structure - acepta cualquier objeto parecido a AvatarAttributes
+ * Útil para pasar estructuras similares desde otras fuentes sin validación estricta
+ * @example
+ * // Válido - estructura exacta
+ * { skinId: 1, eyesId: 2, hairId: 3 }
+ * // También válido - estructura parcial o similar
+ * { skin: 1, eyes: 2 } (fields similares serán ignorados)
+ */
+export type AvatarAttributesInput = Partial<AvatarAttributes> & Record<string, any>;
+
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
-  emoji?: AvatarAttributes;
+  /** Avatar attributes - puede ser cualquier objeto con estructura similar */
+  emoji?: AvatarAttributesInput;
   size?: number;
   src?: string;
   alt?: string;

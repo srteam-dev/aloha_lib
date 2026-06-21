@@ -1,7 +1,10 @@
 ﻿import React from 'react';
 import { cn } from '../../lib/utils';
-import { Pattern, type PatternName } from '../Pattern';
+import { Pattern, type PatternName, type PatternSize } from '../Pattern';
 import { type ColorName } from '../../colors';
+
+export type PatternLayoutDirection = 'row' | 'column' | 'grid';
+export type PatternGroupRounded = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 
 export interface PatternGroupItem {
     /** Pattern name */
@@ -24,15 +27,15 @@ export interface PatternGroupProps extends React.HTMLAttributes<HTMLDivElement> 
     /** Gap between patterns (in pixels) */
     gap?: number;
     /** Layout direction */
-    direction?: 'row' | 'column' | 'grid';
+    direction?: PatternLayoutDirection;
     /** Number of columns (only for grid layout) */
     columns?: number;
     /** Size for all patterns */
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
+    size?: PatternSize;
     /** Padding around the group */
     padding?: number;
     /** Border radius */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
+    rounded?: PatternGroupRounded;
 }
 
 const PatternGroup = React.forwardRef<HTMLDivElement, PatternGroupProps>(

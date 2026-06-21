@@ -2,12 +2,20 @@
 import { Loader2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
+export type LoadingSize = 'sm' | 'md' | 'lg';
+
 export interface LoadingProps {
   message?: string;
   className?: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: LoadingSize;
   centered?: boolean;
 }
+
+const sizeClasses: Record<LoadingSize, string> = {
+  sm: 'w-4 h-4',
+  md: 'w-8 h-8',
+  lg: 'w-12 h-12',
+};
 
 export const Loading: React.FC<LoadingProps> = ({
   message,
@@ -15,11 +23,6 @@ export const Loading: React.FC<LoadingProps> = ({
   size = 'md',
   centered = false,
 }) => {
-  const sizeClasses = {
-    sm: 'w-4 h-4',
-    md: 'w-8 h-8',
-    lg: 'w-12 h-12',
-  };
 
   const wrapper = centered ? 'flex flex-col items-center justify-center' : 'inline-flex flex-col items-center';
 
