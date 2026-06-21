@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Streak } from './Streak';
 
 const meta = {
-    title: 'Components/Streak',
+    title: 'Data Display/Streak',
     component: Streak,
     parameters: {
         layout: 'centered',

@@ -4,7 +4,7 @@ import { getAvatarPartsByType } from './avatarParts';
 import './Avatar.css';
 
 const meta = {
-  title: 'Components/Avatar',
+  title: 'Data Display/Avatar',
   component: Avatar,
   parameters: {
     layout: 'centered',

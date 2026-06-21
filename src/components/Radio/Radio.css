@@ -1,0 +1,65 @@
+.aloha-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.aloha-radio-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-nunito);
+}
+
+.aloha-radio-item--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.aloha-radio-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #4A443F; /* piedra */
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.aloha-radio-item:hover:not(.aloha-radio-item--disabled) .aloha-radio-indicator {
+  border-color: #383517; /* olivo */
+  transform: scale(1.05);
+}
+
+.aloha-radio-inner-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: aloha-radio-scale-in 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.aloha-radio-label {
+  color: #383517; /* olivo */
+  font-weight: 600;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@keyframes aloha-radio-scale-in {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}

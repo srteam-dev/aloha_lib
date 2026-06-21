@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { TextDivider } from './TextDivider';
+import { TextDivider, type TextDividerProps } from './TextDivider';
 import { Button } from '../Button';
 
 // Avatares de muestra incrustados (no dependen de controles)
@@ -9,9 +9,15 @@ const SAMPLE_AVATARS = [
   { src: 'https://i.pravatar.cc/150?img=32' },
 ];
 
+type TextDividerStoryProps = TextDividerProps & {
+  withAvatars?: boolean;
+  withButton?: boolean;
+  buttonLabel?: string;
+};
+
 // ── Meta ────────────────────────────────────────────────────────
 const meta = {
-  title: 'Components/TextDivider',
+  title: 'Data Display/TextDivider',
   component: TextDivider,
   parameters: { layout: 'padded' },
   tags: ['autodocs'],
@@ -54,14 +60,10 @@ const meta = {
     rightSlot: { table: { disable: true } },
     avatarRingColor: { table: { disable: true } },
   },
-} satisfies Meta<typeof TextDivider & {
-  withAvatars?: boolean;
-  withButton?: boolean;
-  buttonLabel?: string;
-}>;
+} satisfies Meta<TextDividerStoryProps>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<TextDividerStoryProps>;
 
 // ── Helper para el render del Playground ─────────────────────────
 const PlaygroundRender = ({
@@ -69,11 +71,7 @@ const PlaygroundRender = ({
   withButton,
   buttonLabel = 'Ver todos',
   ...args
-}: typeof meta extends Meta<infer T> ? T : never & {
-  withAvatars?: boolean;
-  withButton?: boolean;
-  buttonLabel?: string;
-}) => (
+}: TextDividerStoryProps) => (
   <TextDivider
     {...args}
     avatars={withAvatars ? SAMPLE_AVATARS : undefined}
@@ -93,8 +91,8 @@ export const Playground: Story = {
     withAvatars: false,
     withButton: false,
     buttonLabel: 'Ver todos',
-  } as any,
-  render: PlaygroundRender as any,
+  },
+  render: PlaygroundRender,
 };
 
 // ── Casos fijos ──────────────────────────────────────────────────

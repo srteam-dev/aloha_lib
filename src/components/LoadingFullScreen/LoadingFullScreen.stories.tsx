@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { LoadingFullScreen } from './LoadingFullScreen';
 
 const meta: Meta<typeof LoadingFullScreen> = {
-  title: 'Components/LoadingFullScreen',
+  title: 'Feedback/LoadingFullScreen',
   component: LoadingFullScreen,
   parameters: {
     layout: 'fullscreen',

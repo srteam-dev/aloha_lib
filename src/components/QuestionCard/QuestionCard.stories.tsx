@@ -29,7 +29,7 @@ const emojiTu: AvatarAttributes = {
 };
 
 const meta = {
-    title: 'Components/QuestionCard',
+    title: 'Data Display/QuestionCard',
     component: QuestionCard,
     parameters: {
         layout: 'padded',

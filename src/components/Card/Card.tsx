@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { cn } from '../../lib/utils';
 import { H1, H2, H3, H4, P, Small, FontFamily, FontWeight, ColorOption } from '../Typography';
 
@@ -208,7 +208,8 @@ const CardDescription = React.forwardRef<HTMLParagraphElement, CardDescriptionPr
     const Component = small ? Small : P;
 
     // Filtrar 'color' de restProps para evitar conflictos
-    const { color: _, ...props } = restProps as any;
+    const props = { ...restProps } as Record<string, unknown>;
+    delete props.color;
 
     return (
       <Component

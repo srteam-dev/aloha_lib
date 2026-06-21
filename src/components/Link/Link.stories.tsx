@@ -3,7 +3,7 @@ import { Link } from './Link';
 import { BrowserRouter } from 'react-router-dom';
 
 const meta = {
-  title: 'Components/Link',
+  title: 'Navigation/Link',
   component: Link,
   parameters: {
     layout: 'centered',

@@ -6,7 +6,7 @@ import { P } from '../Typography';
 import { useState } from 'react';
 
 const meta = {
-  title: 'Components/Popup',
+  title: 'Overlay/Popup',
   component: Popup,
   parameters: {
     layout: 'centered',

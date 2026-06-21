@@ -1,18 +1,15 @@
 import React from 'react';
 import './FriendListItem.css';
 import { cn } from '../../lib/utils';
-import { Avatar, type AvatarAttributes } from '../Avatar';
+import { Avatar, type AvatarProps, type AvatarAttributes } from '../Avatar';
+import { AvatarGroup } from '../AvatarGroup';
 import { colors, type ColorName } from '../../colors';
 
 // ── Tipos ────────────────────────────────────────────────────────
 
 export type FriendItemVariant = 'user' | 'group';
 
-
-
-export interface FriendAvatar {
-    emoji?: AvatarAttributes;
-}
+export type FriendAvatar = Omit<AvatarProps, 'ref'>;
 
 export interface FriendListItemProps extends React.HTMLAttributes<HTMLButtonElement> {
     /**
@@ -107,17 +104,13 @@ const FriendListItem = React.forwardRef<HTMLButtonElement, FriendListItemProps>(
                     ) : (
                         <>
                             {/* Stack de avatares superpuestos */}
-                            <span className="friend-list-item__avatar-stack">
-                                {avatars.slice(0, 4).map((av, i) => (
-                                    <Avatar
-                                        key={i}
-                                        emoji={av.emoji as AvatarAttributes}
-                                        size={40}
-                                        className="friend-list-item__stack-avatar"
-                                        style={{ zIndex: avatars.length - i }}
-                                    />
-                                ))}
-                            </span>
+                            <AvatarGroup
+                                avatars={avatars}
+                                max={4}
+                                size={40}
+                                ringColor={avatarRingColor}
+                                className="friend-list-item__avatar-stack"
+                            />
                             {/* Nombre personalizado del grupo */}
                             {name && (
                                 <span className="friend-list-item__name">{name}</span>

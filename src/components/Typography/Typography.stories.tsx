@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { H1, H2, H3, H4, P, Subtitle, Lead, Small, Muted, FontFamily, ColorOption } from './Typography';
 
 const meta = {
-  title: 'Components/Typography',
+  title: 'Typography/Typography',
   parameters: {
     layout: 'padded',
   },

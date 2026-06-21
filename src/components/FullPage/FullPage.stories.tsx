@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FullPage } from './FullPage';
 
 const meta: Meta<typeof FullPage> = {
-  title: 'Components/FullPage',
+  title: 'Layout/FullPage',
   component: FullPage,
   parameters: {
     layout: 'fullscreen',

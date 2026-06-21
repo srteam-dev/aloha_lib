@@ -1,0 +1,116 @@
+.aloha-tabs {
+  width: auto;
+  border-bottom: 2px solid #D8D8C1; /* marmol */
+}
+
+.aloha-tabs__list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.aloha-tabs--full-width .aloha-tabs__list {
+  justify-content: space-between;
+}
+
+.aloha-tabs--full-width .aloha-tabs__trigger {
+  flex: 1;
+  justify-content: center;
+}
+
+.aloha-tabs__trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-family: var(--font-nunito);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #6B5B3E; /* corteza */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.aloha-tabs__trigger:hover {
+  color: #383517; /* olivo */
+}
+
+.aloha-tabs__icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Variant DEFAULT: Bottom line indicator */
+.aloha-tabs--default .aloha-tabs__trigger--active {
+  color: #383517; /* olivo */
+}
+
+.aloha-tabs--default .aloha-tabs__trigger--active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #648C2C; /* bosque */
+  border-radius: 9999px;
+}
+
+/* Variant OUTLINE: Border outline indicator */
+.aloha-tabs--outline {
+  border-bottom: none;
+}
+
+.aloha-tabs--outline .aloha-tabs__list {
+  gap: 4px;
+}
+
+.aloha-tabs--outline .aloha-tabs__trigger {
+  border: 2px solid #D8D8C1; /* marmol */
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  background-color: #FEFEFC; /* ice */
+  bottom: -2px;
+}
+
+.aloha-tabs--outline .aloha-tabs__trigger--active {
+  color: #383517; /* olivo */
+  background-color: #F5F5DC; /* hueso */
+  border-color: #6B5B3E; /* corteza */
+  border-bottom: 2px solid #F5F5DC;
+  z-index: 1;
+}
+
+/* Variant PILLS: Solid capsule background indicators */
+.aloha-tabs--pills {
+  border-bottom: none;
+}
+
+.aloha-tabs--pills .aloha-tabs__list {
+  background-color: #D8D8C1; /* marmol */
+  padding: 4px;
+  border-radius: 12px;
+  display: inline-flex;
+  width: auto;
+}
+
+.aloha-tabs--pills.aloha-tabs--full-width .aloha-tabs__list {
+  display: flex;
+  width: 100%;
+}
+
+.aloha-tabs--pills .aloha-tabs__trigger {
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.aloha-tabs--pills .aloha-tabs__trigger--active {
+  color: #383517; /* olivo */
+  background-color: #F5F5DC; /* hueso */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}

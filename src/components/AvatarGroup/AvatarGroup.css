@@ -1,0 +1,30 @@
+.avatar-group-stack {
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  flex-shrink: 0;
+}
+
+.avatar-group-item {
+  margin-left: -8px;
+  outline: 2px solid var(--ag-ring-color, #fff);
+  outline-offset: 0;
+  border-radius: 50%;
+}
+
+.avatar-group-stack > *:last-child {
+  margin-left: 0;
+}
+
+.avatar-group-extra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  background-color: #6B5B3E; /* corteza/theme highlight color */
+  color: #F5F5DC; /* hueso */
+  border-radius: 50%;
+  margin-left: -8px;
+  outline: 2px solid var(--ag-ring-color, #fff);
+  outline-offset: 0;
+}

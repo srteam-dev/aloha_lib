@@ -10,7 +10,7 @@ const fruitOptions = [
 ];
 
 const meta = {
-  title: 'Components/Select',
+  title: 'Form/Select',
   component: Select,
   parameters: {
     layout: 'centered',

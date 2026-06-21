@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FormError } from './FormError';
 
 const meta = {
-    title: 'Components/FormError',
+    title: 'Feedback/FormError',
     component: FormError,
     parameters: {
         layout: 'centered',

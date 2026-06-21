@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Error } from './Error';
 
 const meta: Meta<typeof Error> = {
-  title: 'Components/Error',
+  title: 'Feedback/Error',
   component: Error,
   tags: ['autodocs'],
 };
@@ -12,7 +12,7 @@ type Story = StoryObj<typeof Error>;
 
 export const Default: Story = {
   args: {
-    title: 'Error',
+    title: 'Feedback/Error',
     message: 'Algo salió mal.',
     onRetry: () => alert('Reintentando...'),
   },
@@ -20,7 +20,7 @@ export const Default: Story = {
 
 export const InlineVariant: Story = {
   args: {
-    title: 'Error al cargar',
+    title: 'Feedback/Error',
     message: 'No se pudieron cargar los datos.',
     variant: 'inline',
     onRetry: () => alert('Reintentando...'),
@@ -29,7 +29,7 @@ export const InlineVariant: Story = {
 
 export const CardVariant: Story = {
   args: {
-    title: 'Error de Conexión',
+    title: 'Feedback/Error',
     message: 'No se pudo conectar con el servidor. Verifica tu conexión a internet.',
     variant: 'card',
     onRetry: () => alert('Reintentando conexión...'),
@@ -39,7 +39,7 @@ export const CardVariant: Story = {
 
 export const WithoutRetry: Story = {
   args: {
-    title: 'Error',
+    title: 'Feedback/Error',
     message: 'Operación no permitida.',
     variant: 'card',
   },
@@ -47,7 +47,7 @@ export const WithoutRetry: Story = {
 
 export const WithoutIcon: Story = {
   args: {
-    title: 'Error',
+    title: 'Feedback/Error',
     message: 'Algo salió mal.',
     showIcon: false,
     onRetry: () => alert('Reintentando...'),
@@ -56,7 +56,7 @@ export const WithoutIcon: Story = {
 
 export const CustomRetryText: Story = {
   args: {
-    title: 'Error de Carga',
+    title: 'Feedback/Error',
     message: 'No se pudo cargar el contenido.',
     onRetry: () => alert('Recargando...'),
     retryText: 'Recargar',
@@ -66,7 +66,7 @@ export const CustomRetryText: Story = {
 
 export const InContainer: Story = {
   args: {
-    title: 'Sin Resultados',
+    title: 'Feedback/Error',
     message: 'No se encontraron datos que coincidan con tu búsqueda.',
     onRetry: () => alert('Limpiando búsqueda...'),
     retryText: 'Limpiar Búsqueda',

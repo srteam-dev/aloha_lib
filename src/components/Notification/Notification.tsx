@@ -1,7 +1,8 @@
-﻿import React from 'react';
+import React from 'react';
 import { cn } from '../../lib/utils';
 import { Bell, X } from 'lucide-react';
-import { Avatar } from '../Avatar';
+import { Avatar, type AvatarProps } from '../Avatar';
+import './Notification.css';
 
 export interface NotificationProps {
   id?: string;
@@ -9,7 +10,8 @@ export interface NotificationProps {
   title: string;
   message: string;
   timestamp: string;
-  avatar?: string;
+  /** Full AvatarProps object configuration to support emojis, images, and fallbacks */
+  avatar?: AvatarProps;
   read?: boolean;
   onClose?: () => void;
   onClick?: () => void;
@@ -32,37 +34,45 @@ const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
     },
     ref
   ) => {
-    const typeColors = {
-      like: 'text-red-500',
-      comment: 'text-blue-500',
-      follow: 'text-green-500',
-      mention: 'text-purple-500',
-      info: 'text-gray-500',
+    const iconColors = {
+      like: '#FF6F61',      // coral
+      comment: '#0084FF',   // electrico
+      follow: '#648C2C',    // bosque
+      mention: '#B388D3',   // lavanda
+      info: '#4A443F',      // piedra
     };
 
     return (
       <div
         ref={ref}
         className={cn(
-          'flex items-start gap-3 rounded-lg border p-4 transition-colors',
-          !read && 'bg-blue-50/50 dark:bg-blue-950/20',
-          onClick && 'cursor-pointer hover:bg-accent',
+          'aloha-notification',
+          !read && 'aloha-notification--unread',
+          onClick && 'aloha-notification--clickable',
           className
         )}
         onClick={onClick}
         {...props}
       >
         {avatar ? (
-          <Avatar src={avatar} alt={title} size="sm" />
+          <Avatar 
+            alt={title} 
+            size="sm" 
+            className="aloha-notification__avatar"
+            {...avatar} 
+          />
         ) : (
-          <div className={cn('rounded-full p-2 bg-muted', typeColors[type])}>
+          <div 
+            className="aloha-notification__icon-container"
+            style={{ color: iconColors[type] }}
+          >
             <Bell className="h-4 w-4" />
           </div>
         )}
-        <div className="flex-1 space-y-1">
-          <p className="text-sm font-medium leading-none">{title}</p>
-          <p className="text-sm text-muted-foreground">{message}</p>
-          <p className="text-xs text-muted-foreground">{timestamp}</p>
+        <div className="aloha-notification__content">
+          <p className="aloha-notification__title">{title}</p>
+          <p className="aloha-notification__message">{message}</p>
+          <p className="aloha-notification__timestamp">{timestamp}</p>
         </div>
         {onClose && (
           <button
@@ -70,10 +80,10 @@ const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
               e.stopPropagation();
               onClose();
             }}
-            className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            className="aloha-notification__close-btn"
+            aria-label="Close notification"
           >
             <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
           </button>
         )}
       </div>

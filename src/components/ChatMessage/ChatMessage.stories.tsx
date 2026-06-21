@@ -35,7 +35,7 @@ const avatarCarlos: AvatarAttributes = {
 };
 
 const meta = {
-    title: 'Components/ChatMessage',
+    title: 'Data Display/ChatMessage',
     component: ChatMessage,
     parameters: {
         layout: 'padded',
@@ -104,7 +104,6 @@ export const Sent: Story = {
 
 // ── Colores personalizados ────────────────────────────────────
 export const CustomColors: Story = {
-    name: 'Custom Colors',
     args: {
         variant: 'received',
         name: 'Ale',

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Notification } from './Notification';
 
 const meta = {
-  title: 'Components/Notification',
+  title: 'Feedback/Notification',
   component: Notification,
   parameters: {
     layout: 'centered',
@@ -25,7 +25,7 @@ export const Like: Story = {
     title: 'New Like',
     message: 'John Doe liked your post',
     timestamp: '5 minutes ago',
-    avatar: 'https://i.pravatar.cc/150?img=1',
+    avatar: { src: 'https://i.pravatar.cc/150?img=1' },
     read: false,
   },
 };
@@ -36,7 +36,7 @@ export const Comment: Story = {
     title: 'New Comment',
     message: 'Jane Smith commented on your post: "Great content!"',
     timestamp: '10 minutes ago',
-    avatar: 'https://i.pravatar.cc/150?img=2',
+    avatar: { src: 'https://i.pravatar.cc/150?img=2' },
     read: false,
   },
 };
@@ -47,7 +47,7 @@ export const Follow: Story = {
     title: 'New Follower',
     message: 'Mike Johnson started following you',
     timestamp: '1 hour ago',
-    avatar: 'https://i.pravatar.cc/150?img=3',
+    avatar: { emoji: { skinId: 2, eyesId: 4, mouthId: 1, eyebrowId: 2 } },
     read: false,
   },
 };
@@ -58,7 +58,7 @@ export const Mention: Story = {
     title: 'You were mentioned',
     message: 'Sarah Williams mentioned you in a post',
     timestamp: '2 hours ago',
-    avatar: 'https://i.pravatar.cc/150?img=4',
+    avatar: { src: 'https://i.pravatar.cc/150?img=4' },
     read: false,
   },
 };
@@ -79,7 +79,7 @@ export const Read: Story = {
     title: 'Read Notification',
     message: 'This notification has been read',
     timestamp: '2 days ago',
-    avatar: 'https://i.pravatar.cc/150?img=5',
+    avatar: { src: 'https://i.pravatar.cc/150?img=5' },
     read: true,
   },
 };

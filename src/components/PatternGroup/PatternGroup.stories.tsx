@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { PatternGroup } from './PatternGroup';
 
 const meta = {
-    title: 'Components/PatternGroup',
+    title: 'Design System/PatternGroup',
     component: PatternGroup,
     parameters: {
         layout: 'centered',

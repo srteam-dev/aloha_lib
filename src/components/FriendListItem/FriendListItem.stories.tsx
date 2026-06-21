@@ -19,7 +19,7 @@ const SAMPLE_AVATARS = [
 ];
 
 const meta = {
-    title: 'Components/FriendListItem',
+    title: 'Data Display/FriendListItem',
     component: FriendListItem,
     parameters: {
         layout: 'padded',

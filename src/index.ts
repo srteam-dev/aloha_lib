@@ -3,17 +3,21 @@ export { Button, buttonVariants, type ButtonProps } from './components/Button';
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, type CardProps, type CardSize, type BorderRadius, type SpacingSize, type TitleComponent } from './components/Card';
 export { Avatar, type AvatarProps, type AvatarAttributes, type AvatarAttributesInput } from './components/Avatar';
 export type { SkinId, EyesId, EyebrowId, FacialHairId, HairId, MouthId, AvatarPartType } from './components/Avatar';
+export { AvatarGroup, type AvatarGroupProps } from './components/AvatarGroup';
 export { Badge, badgeVariants, type BadgeProps } from './components/Badge';
 export { Input, type InputProps } from './components/Input';
+export { TextArea, type TextAreaProps } from './components/TextArea';
 export { Select, type SelectProps, type SelectOption } from './components/Select';
 export { Checkbox, type CheckboxProps } from './components/Checkbox';
 export { Switch, type SwitchProps } from './components/Switch';
+export { RadioGroup, RadioGroupItem, type RadioGroupProps, type RadioGroupItemProps } from './components/Radio';
 export { SearchInput, type SearchInputProps } from './components/SearchInput';
 export { Notification, type NotificationProps } from './components/Notification';
 export { TextDivider, type TextDividerProps, type TypographyComponent } from './components/TextDivider';
 export { Link, type LinkProps } from './components/Link';
 export { Image, type ImageProps } from './components/Image';
 export { Popup, type PopupProps, type PopupSize } from './components/Popup';
+export { Modal, type ModalProps } from './components/Modal';
 export { Error, type ErrorProps, type ErrorVariant } from './components/Error';
 export { FormError, type FormErrorProps } from './components/FormError';
 export { Toast, type ToastProps, type ToastType, type ToastPosition } from './components/Toast';
@@ -29,6 +33,7 @@ export { Pattern, type PatternProps, type PatternName, type PatternSize } from '
 export { PatternGroup, type PatternGroupProps, type PatternGroupItem, type PatternLayoutDirection, type PatternGroupRounded } from './components/PatternGroup';
 export { PatternFill, type PatternFillProps } from './components/PatternFill';
 export { Navbar, type NavbarProps, type NavbarVariant, type NavItem } from './components/Navbar';
+export { Tabs, type TabsProps, type TabItem } from './components/Tabs';
 
 // Typography
 export { H1, H2, H3, H4, P, Subtitle, Lead, Small, Muted, type HeadingProps, type ParagraphProps, type SmallProps, type FontFamily, type FontWeight, type ColorOption } from './components/Typography';

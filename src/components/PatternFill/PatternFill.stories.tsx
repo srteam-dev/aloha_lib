@@ -3,7 +3,7 @@ import { PatternFill } from './PatternFill';
 import { colorEntries } from '../../colors';
 
 const meta = {
-    title: 'Components/PatternFill',
+    title: 'Design System/PatternFill',
     component: PatternFill,
     parameters: {
         layout: 'centered',

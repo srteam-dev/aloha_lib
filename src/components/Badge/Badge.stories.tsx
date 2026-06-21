@@ -3,7 +3,7 @@ import { Badge } from './Badge';
 import { colorEntries } from '../../colors';
 
 const meta = {
-  title: 'Components/Badge',
+  title: 'Data Display/Badge',
   component: Badge,
   parameters: {
     layout: 'centered',

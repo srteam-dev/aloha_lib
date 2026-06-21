@@ -3,7 +3,7 @@ import { Navbar } from './Navbar';
 import { colorEntries } from '../../colors';
 
 const meta = {
-    title: 'Components/Navbar',
+    title: 'Navigation/Navbar',
     component: Navbar,
     parameters: {
         layout: 'fullscreen',

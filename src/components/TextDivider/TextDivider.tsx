@@ -1,8 +1,8 @@
-﻿import React from 'react';
+import React from 'react';
 import './TextDivider.css';
 import { cn } from '../../lib/utils';
 import { H1, H2, H3, H4, P, Small, Muted, type FontFamily, type FontWeight, type ColorOption } from '../Typography';
-import { Avatar } from '../Avatar';
+import { AvatarGroup } from '../AvatarGroup';
 import type { FriendAvatar } from '../FriendListItem';
 
 export type TypographyComponent = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'small' | 'muted';
@@ -99,21 +99,12 @@ const TextDivider = React.forwardRef<HTMLDivElement, TextDividerProps>(
       >
         {/* ── Avatares (opcional, izquierda del todo) ── */}
         {hasAvatars && (
-          <span
+          <AvatarGroup
+            avatars={avatars!}
+            size="sm"
+            ringColor={avatarRingColor || lineColor}
             className="text-divider__avatar-stack"
-            style={{ '--td-ring': avatarRingColor } as React.CSSProperties}
-          >
-            {avatars!.map((av, i) => (
-              <Avatar
-                key={i}
-                src={av.src}
-                fallback={av.fallback}
-                size="sm"
-                className="text-divider__stack-avatar"
-                style={{ zIndex: avatars!.length - i }}
-              />
-            ))}
-          </span>
+          />
         )}
 
         {/* ── Texto ── */}

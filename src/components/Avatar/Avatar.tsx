@@ -21,12 +21,13 @@ export interface AvatarAttributes {
  * // También válido - estructura parcial o similar
  * { skin: 1, eyes: 2 } (fields similares serán ignorados)
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AvatarAttributesInput = Partial<AvatarAttributes> & Record<string, any>;
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Avatar attributes - puede ser cualquier objeto con estructura similar */
   emoji?: AvatarAttributesInput;
-  size?: number;
+  size?: number | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   src?: string;
   alt?: string;
   fallback?: string;
@@ -41,6 +42,15 @@ const DEFAULT_AVATAR: AvatarAttributes = {
   mouthId: 1,
 };
 
+const sizeMap: Record<string, number> = {
+  xs: 24,
+  sm: 32,
+  md: 40,
+  lg: 80,
+  xl: 120,
+  '2xl': 160,
+};
+
 const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
   ({ 
     className, 
@@ -52,6 +62,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     fallback,
     ...props 
   }, ref) => {
+    const resolvedSize = typeof size === 'number' ? size : (sizeMap[size] || 100);
     // Si tiene src, mostrar como imagen directa
     if (src) {
       return (
@@ -59,8 +70,8 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
           ref={ref}
           className={cn('avatar-container', className)}
           style={{
-            width: `${size}px`,
-            height: `${size}px`,
+            width: `${resolvedSize}px`,
+            height: `${resolvedSize}px`,
             ...style
           }}
           {...props}
@@ -81,8 +92,8 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
           ref={ref}
           className={cn('avatar-container avatar-fallback', className)}
           style={{
-            width: `${size}px`,
-            height: `${size}px`,
+            width: `${resolvedSize}px`,
+            height: `${resolvedSize}px`,
             ...style
           }}
           {...props}
@@ -107,8 +118,8 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
         ref={ref}
         className={cn('avatar-container', className)}
         style={{
-          width: `${size}px`,
-          height: `${size}px`,
+          width: `${resolvedSize}px`,
+          height: `${resolvedSize}px`,
           ...style
         }}
         {...props}

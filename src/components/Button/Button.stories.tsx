@@ -3,7 +3,7 @@ import { Button } from './Button';
 import { colorEntries } from '../../colors';
 
 const meta = {
-  title: 'Components/Button',
+  title: 'Form/Button',
   component: Button,
   parameters: {
     layout: 'centered',

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Emoji, emojiMap, type EmojiName } from './Emoji';
 
 const meta = {
-    title: 'Components/Emoji',
+    title: 'Data Display/Emoji',
     component: Emoji,
     parameters: {
         layout: 'centered',

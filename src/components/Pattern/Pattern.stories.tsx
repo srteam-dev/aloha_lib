@@ -3,7 +3,7 @@ import { Pattern, patternMap, type PatternName } from './Pattern';
 import { colorEntries } from '../../colors';
 
 const meta = {
-    title: 'Components/Pattern',
+    title: 'Design System/Pattern',
     component: Pattern,
     parameters: {
         layout: 'centered',
